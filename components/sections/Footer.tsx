@@ -50,7 +50,7 @@ const legal = site.legal;
 
 export function Footer() {
   return (
-    <footer className="on-dark bg-navy-900 pt-16 pb-10 lg:pt-20">
+    <footer className="on-dark relative bg-navy-900 pt-14 pb-8 before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-linear-to-r before:from-transparent before:via-white/15 before:to-transparent lg:pt-16">
       <div className="container-page flex flex-col gap-10 lg:gap-12">
         <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-[360px_repeat(3,minmax(0,1fr))] lg:gap-16">
           <div className="col-span-2 flex flex-col gap-6 sm:col-span-3 lg:col-span-1">

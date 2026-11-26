@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import { RevealController } from "@/components/RevealController";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -36,10 +37,23 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
+// Enables scroll-reveal before first paint; if the reveal controller hasn't started within 3s (script error,
+// blocked JS bundle), the class is removed again so no content stays hidden.
+const revealBootstrap =
+  "document.documentElement.classList.add('js-reveal');" +
+  "setTimeout(function(){if(!window.__revealReady)document.documentElement.classList.remove('js-reveal')},3000);";
+
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en-AU" className={`${inter.variable} ${jakarta.variable}`}>
-      <body>{children}</body>
+    // suppressHydrationWarning: the inline script adds the js-reveal class to <html> before hydration.
+    <html lang="en-AU" className={`${inter.variable} ${jakarta.variable}`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: revealBootstrap }} />
+      </head>
+      <body>
+        {children}
+        <RevealController />
+      </body>
     </html>
   );
 }

@@ -65,12 +65,18 @@ function ServiceCard({ s }: { s: Service }) {
     <article
       id={s.id}
       aria-labelledby={`${s.id}-title`}
-      className={`anchor-target flex flex-col gap-7 rounded-[28px] p-6 sm:p-9 lg:p-11 ${
-        s.dark ? "on-dark bg-navy-900 shadow-floating" : "border border-line bg-subtle"
+      className={`anchor-target flex flex-col gap-7 rounded-[28px] p-6 sm:p-9 lg:row-span-5 lg:grid lg:grid-rows-subgrid lg:p-11 ${
+        s.dark ? "on-dark surface-dark lift-dark" : "glass-light lift"
       }`}
     >
       <div className="flex items-center justify-between gap-4">
-        <span className={`flex size-16 items-center justify-center rounded-2xl ${s.dark ? "bg-green" : "bg-brand"}`}>
+        <span
+          className={`flex size-16 items-center justify-center rounded-2xl ring-1 ring-inset ring-white/20 ${
+            s.dark
+              ? "bg-linear-to-br from-green-bright to-green-ink shadow-[0_10px_24px_-10px_rgb(34_197_94/0.6)]"
+              : "bg-linear-to-br from-brand to-brand-hover shadow-[0_10px_24px_-10px_rgb(11_99_229/0.6)]"
+          }`}
+        >
           <Icon name={s.icon} size={32} />
         </span>
         <span
@@ -99,7 +105,7 @@ function ServiceCard({ s }: { s: Service }) {
         variant={s.dark ? "green" : "primary"}
         enquiry={s.topic}
         icon="arrow-right-white"
-        className="self-stretch sm:self-start"
+        className="self-stretch sm:self-start lg:self-end lg:justify-self-start"
       >
         {s.cta}
       </Button>
@@ -109,7 +115,7 @@ function ServiceCard({ s }: { s: Service }) {
 
 export function Services() {
   return (
-    <section id="services" aria-labelledby="services-title" className="section-y bg-white">
+    <section id="services" aria-labelledby="services-title" className="section-y bg-ambient">
       <div className="container-page flex flex-col gap-10 lg:gap-14">
         <SectionHeader
           id="services-title"
@@ -117,7 +123,7 @@ export function Services() {
           title="Two specialties. Zero distractions."
           subtitle="This dedicated help desk handles Microsoft 365 and antivirus support — so you reach professional technicians focused on these areas."
         />
-        <div className="grid gap-6 lg:grid-cols-2">
+        <div data-reveal-group className="grid gap-6 lg:grid-cols-2">
           {services.map((s) => (
             <ServiceCard key={s.id} s={s} />
           ))}

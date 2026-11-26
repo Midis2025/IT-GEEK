@@ -19,7 +19,7 @@ type SectionHeaderProps = {
 export function SectionHeader({ eyebrow, title, subtitle, id, align = "center", dark = false }: SectionHeaderProps) {
   const center = align === "center";
   return (
-    <div className={`flex flex-col gap-4 ${center ? "mx-auto max-w-[800px] items-center text-center" : "items-start"}`}>
+    <div data-reveal className={`flex flex-col gap-4 ${center ? "mx-auto max-w-[800px] items-center text-center" : "items-start"}`}>
       <Eyebrow tone={dark ? "green" : "brand"}>{eyebrow}</Eyebrow>
       <h2 id={id} className={`text-h2 ${dark ? "text-white" : "text-heading"} ${center ? "" : "max-w-[600px]"}`}>
         {title}

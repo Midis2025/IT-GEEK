@@ -18,16 +18,16 @@ export function Faq() {
     });
 
   return (
-    <section id="faq" aria-labelledby="faq-title" className="section-y bg-white">
+    <section id="faq" aria-labelledby="faq-title" className="section-y bg-subtle">
       <div className="container-page flex flex-col gap-10 lg:gap-12">
         <SectionHeader id="faq-title" eyebrow="FAQ" title="Questions, answered" />
-        <div className="mx-auto flex w-full max-w-[860px] flex-col gap-4">
+        <div data-reveal-group className="mx-auto flex w-full max-w-[860px] flex-col gap-4">
           {faqs.map((item, i) => {
             const isOpen = open.has(i);
             return (
               <div
                 key={item.q}
-                className={`rounded-2xl border bg-white transition-colors duration-200 ${isOpen ? "border-brand/40" : "border-line hover:border-brand/25"}`}
+                className={`glass-light rounded-2xl ${isOpen ? "border-brand/35" : "hover:border-brand/25"}`}
               >
                 <h3>
                   <button
@@ -36,13 +36,23 @@ export function Faq() {
                     aria-expanded={isOpen}
                     aria-controls={`faq-a-${i}`}
                     onClick={() => toggle(i)}
-                    className="flex w-full items-center gap-6 rounded-2xl px-5 py-5 text-left sm:px-7 sm:py-6"
+                    className="group flex w-full items-center gap-6 rounded-2xl px-5 py-5 text-left sm:px-7 sm:py-6"
                   >
-                    <span className="text-h5 flex-1 text-heading">{item.q}</span>
+                    <span className="text-h5 flex-1 text-heading transition-colors duration-200 group-hover:text-brand">{item.q}</span>
                     <span
-                      className={`flex size-8 shrink-0 items-center justify-center rounded-full transition-colors duration-200 ${isOpen ? "bg-brand" : "bg-brand-soft"}`}
+                      className={`relative flex size-8 shrink-0 items-center justify-center rounded-full transition-colors duration-300 ${isOpen ? "bg-brand" : "bg-brand-soft group-hover:bg-brand/15"}`}
                     >
-                      <Icon name={isOpen ? "faq-minus" : "faq-plus"} size={18} />
+                      {/* Plus turns into minus: cross-fade with a quarter turn. */}
+                      <Icon
+                        name="faq-plus"
+                        size={18}
+                        className={`absolute transition-[opacity,rotate] duration-300 ${isOpen ? "rotate-90 opacity-0" : "opacity-100"}`}
+                      />
+                      <Icon
+                        name="faq-minus"
+                        size={18}
+                        className={`absolute transition-[opacity,rotate] duration-300 ${isOpen ? "opacity-100" : "-rotate-90 opacity-0"}`}
+                      />
                     </span>
                   </button>
                 </h3>
@@ -52,7 +62,7 @@ export function Faq() {
                   aria-labelledby={`faq-q-${i}`}
                   className={`grid transition-[grid-template-rows,margin] duration-300 ease-out ${isOpen ? "-mt-2 grid-rows-[1fr] sm:-mt-3" : "grid-rows-[0fr]"}`}
                 >
-                  <div className="overflow-hidden" inert={!isOpen}>
+                  <div className={`overflow-hidden transition-opacity duration-300 ${isOpen ? "opacity-100" : "opacity-0"}`} inert={!isOpen}>
                     <p className="px-5 pb-6 text-base leading-[26px] text-body sm:px-7">{item.a}</p>
                   </div>
                 </div>

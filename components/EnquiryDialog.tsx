@@ -151,7 +151,7 @@ export function EnquiryDialog() {
     <dialog
       ref={dialogRef}
       aria-labelledby={`${uid}-title`}
-      className="m-auto w-[calc(100%-1.5rem)] max-w-[560px] rounded-3xl bg-white p-0 text-body shadow-floating backdrop:bg-navy-900/70 backdrop:backdrop-blur-sm open:motion-safe:animate-[dialog-in_200ms_ease-out]"
+      className="m-auto w-[calc(100%-1.5rem)] max-w-[560px] rounded-3xl bg-linear-to-b from-white from-60% to-subtle p-0 text-body shadow-floating ring-1 ring-brand/10 backdrop:bg-navy-900/60 backdrop:backdrop-blur-md open:motion-safe:animate-[dialog-in_220ms_cubic-bezier(0.22,0.61,0.36,1)]"
       onClick={(e) => e.target === e.currentTarget && close()}
     >
       <div className="max-h-[calc(100dvh-1.5rem)] overflow-y-auto p-6 sm:p-9">
@@ -171,7 +171,7 @@ export function EnquiryDialog() {
             type="button"
             onClick={close}
             aria-label="Close"
-            className="-mt-1 -mr-2 flex size-11 shrink-0 items-center justify-center rounded-full text-heading hover:bg-subtle"
+            className="-mt-1 -mr-2 flex size-11 shrink-0 items-center justify-center rounded-full text-heading transition-[background-color,rotate] duration-200 hover:rotate-90 hover:bg-brand-soft"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
@@ -275,7 +275,7 @@ export function EnquiryDialog() {
             <button
               type="submit"
               disabled={submitting}
-              className="inline-flex min-h-14 items-center justify-center gap-2 rounded-[10px] bg-brand px-[26px] py-4 text-base font-semibold text-white transition-colors hover:bg-brand-hover disabled:cursor-wait disabled:opacity-80"
+              className="group inline-flex min-h-14 items-center justify-center gap-2 rounded-[10px] bg-brand px-[26px] py-4 text-base font-semibold text-white shadow-[0_8px_20px_-8px_rgb(11_99_229/0.6)] transition-[background-color,box-shadow,translate] duration-200 hover:-translate-y-px hover:bg-brand-hover hover:shadow-[0_12px_26px_-8px_rgb(11_99_229/0.65)] active:translate-y-px disabled:cursor-wait disabled:opacity-80 disabled:hover:translate-y-0"
             >
               {submitting ? (
                 <>

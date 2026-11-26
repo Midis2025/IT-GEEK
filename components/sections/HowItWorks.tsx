@@ -21,7 +21,7 @@ const steps = [
 
 export function HowItWorks() {
   return (
-    <section id="how-it-works" aria-labelledby="how-title" className="section-y bg-white">
+    <section id="how-it-works" aria-labelledby="how-title" className="section-y bg-ambient">
       <div className="container-page flex flex-col gap-10 lg:gap-14">
         <SectionHeader
           id="how-title"
@@ -29,14 +29,24 @@ export function HowItWorks() {
           title="Fixed in three simple steps"
           subtitle="No waiting around for a technician to drive over. Just convenient, secure remote help from a specialist."
         />
-        <ol className="grid gap-4 sm:gap-6 md:grid-cols-3">
+        <ol data-reveal-group className="grid gap-4 sm:gap-6 md:grid-cols-3">
           {steps.map((step, i) => (
-            <li key={step.title} className="flex flex-col gap-5 rounded-[20px] border border-line bg-white p-6 sm:p-8">
+            <li
+              key={step.title}
+              className={`glass-light lift relative flex flex-col gap-5 rounded-[20px] p-6 sm:p-8 ${
+                // Discreet dashed connector across the gap to the next step (desktop/tablet row layout only).
+                i < steps.length - 1
+                  ? "md:after:absolute md:after:top-[60px] md:after:left-full md:after:w-6 md:after:border-t-2 md:after:border-dashed md:after:border-brand/30"
+                  : ""
+              }`}
+            >
               <div className="flex items-center justify-between">
-                <span className="flex size-14 items-center justify-center rounded-[14px] bg-brand">
+                <span className="flex size-14 items-center justify-center rounded-[14px] bg-linear-to-br from-brand to-brand-hover shadow-[0_10px_24px_-10px_rgb(11_99_229/0.6)] ring-1 ring-white/20 ring-inset">
                   <Icon name={step.icon} size={26} />
                 </span>
-                <span className="text-eyebrow text-brand">Step {String(i + 1).padStart(2, "0")}</span>
+                <span className="text-eyebrow rounded-full bg-brand-soft px-3 py-1.5 text-brand ring-1 ring-brand/10 ring-inset">
+                  Step {String(i + 1).padStart(2, "0")}
+                </span>
               </div>
               <h3 className="text-h4 text-heading">{step.title}</h3>
               <p className="text-base leading-[26px] text-body">{step.text}</p>

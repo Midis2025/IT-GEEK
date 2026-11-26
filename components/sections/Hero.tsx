@@ -13,7 +13,7 @@ function SupportDeskVisual() {
   return (
     <div className="relative mx-auto w-full max-w-[496px] pt-10 pb-[98px]" aria-hidden="true">
       {/* Support desk card */}
-      <div className="rounded-[20px] bg-white p-4 shadow-floating sm:ml-14 sm:p-6 lg:ml-0 lg:p-5 xl:ml-14 xl:p-6">
+      <div className="glass-blur rounded-[20px] border border-white/70 bg-white/[0.92] p-4 shadow-floating ring-1 ring-brand/10 sm:ml-14 sm:p-6 lg:ml-0 lg:p-5 xl:ml-14 xl:p-6">
         <div className="flex items-center justify-between gap-3 pb-1">
           <div>
             <p className="text-h5 text-heading">Today’s fixes</p>
@@ -26,7 +26,7 @@ function SupportDeskVisual() {
         </div>
         <ul className="mt-3 flex flex-col gap-3">
           {tickets.map((t) => (
-            <li key={t.title} className="flex items-center gap-3.5 rounded-[14px] bg-subtle py-3 pr-3.5 pl-3">
+            <li key={t.title} className="flex items-center gap-3.5 rounded-[14px] border border-line/70 bg-subtle/80 py-3 pr-3.5 pl-3">
               <span className={`hidden size-10 shrink-0 items-center justify-center rounded-[10px] xs:flex ${t.tile}`}>
                 <Icon name={t.icon} size={20} />
               </span>
@@ -50,7 +50,7 @@ function SupportDeskVisual() {
       </div>
 
       {/* Response pill */}
-      <div className="absolute top-0 right-0 flex items-center gap-2 rounded-full bg-white py-2.5 pr-4 pl-3 shadow-floating">
+      <div className="float-slow absolute top-0 right-0 flex items-center gap-2 rounded-full border border-white/70 bg-white/[0.97] py-2.5 pr-4 pl-3 shadow-floating">
         <span className="flex size-7 items-center justify-center rounded-full bg-brand">
           <Icon name="pill-clock" size={16} />
         </span>
@@ -58,7 +58,7 @@ function SupportDeskVisual() {
       </div>
 
       {/* Threat scan card */}
-      <div className="absolute bottom-2.5 left-0 flex w-[300px] max-w-[calc(100%-1.5rem)] flex-col gap-3.5 rounded-2xl bg-white p-[18px] shadow-floating">
+      <div className="float-slow-delayed absolute bottom-2.5 left-0 flex w-[300px] max-w-[calc(100%-1.5rem)] flex-col gap-3.5 rounded-2xl border border-white/70 bg-white/[0.97] p-[18px] shadow-floating">
         <div className="flex items-center gap-3">
           <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-green-soft">
             <Icon name="scan-shield" size={24} />
@@ -68,7 +68,7 @@ function SupportDeskVisual() {
             <span className="block leading-[22px] text-muted">Malware removed · Protected</span>
           </span>
         </div>
-        <span className="block h-1.5 rounded bg-green-bright" />
+        <span className="block h-1.5 rounded bg-linear-to-r from-green to-green-bright" />
       </div>
     </div>
   );
@@ -93,6 +93,12 @@ export function Hero() {
         width={880}
         height={880}
         className="pointer-events-none absolute top-[180px] -left-[360px] -z-10 max-w-none"
+      />
+      {/* Faint technology grid and a slowly drifting ambient light — kept behind the dashboard, away from the copy. */}
+      <div aria-hidden="true" className="tech-grid pointer-events-none absolute inset-0 -z-10" />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute top-[-4%] right-[-6%] -z-10 size-[720px] bg-[radial-gradient(closest-side,rgb(11_99_229/0.24),transparent)] will-change-transform motion-safe:animate-[ambient-drift_18s_ease-in-out_infinite]"
       />
 
       <div className="container-page grid items-center gap-12 pt-10 pb-14 sm:pt-16 md:gap-14 md:pb-20 lg:grid-cols-[minmax(0,1fr)_420px] lg:justify-between lg:gap-10 lg:pt-20 lg:pb-24 xl:grid-cols-[minmax(0,640px)_496px] xl:pt-24 xl:pb-[120px]">

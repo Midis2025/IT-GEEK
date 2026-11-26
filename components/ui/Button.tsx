@@ -7,10 +7,12 @@ type Variant = "primary" | "green" | "outline-dark" | "white";
 type Size = "md" | "lg";
 
 const variants: Record<Variant, string> = {
-  primary: "bg-brand text-white hover:bg-brand-hover",
-  green: "bg-green-ink text-white hover:bg-green-ink-hover",
+  primary:
+    "bg-brand text-white shadow-[0_8px_20px_-10px_rgb(11_99_229/0.7)] hover:-translate-y-px hover:bg-brand-hover hover:shadow-[0_12px_26px_-10px_rgb(11_99_229/0.75)]",
+  green:
+    "bg-green-ink text-white shadow-[0_8px_20px_-10px_rgb(21_128_61/0.7)] hover:-translate-y-px hover:bg-green-ink-hover hover:shadow-[0_12px_26px_-10px_rgb(21_128_61/0.75)]",
   "outline-dark": "border-[1.5px] border-white/35 text-white hover:border-white/70 hover:bg-white/[0.06]",
-  white: "border border-line bg-white text-heading hover:border-heading/25 hover:bg-subtle",
+  white: "border border-line bg-white text-heading hover:-translate-y-px hover:border-heading/25 hover:bg-subtle",
 };
 
 const sizes: Record<Size, string> = {
@@ -35,7 +37,7 @@ export function Button({ children, variant = "primary", size = "lg", icon, class
     <a
       href={href ?? ENQUIRY_HREF}
       data-enquiry={enquiry}
-      className={`group inline-flex items-center justify-center rounded-[10px] text-center font-semibold sm:whitespace-nowrap transition-[background-color,border-color,transform,box-shadow] duration-200 active:translate-y-px ${variants[variant]} ${sizes[size]} ${className}`}
+      className={`group inline-flex items-center justify-center rounded-[10px] text-center font-semibold sm:whitespace-nowrap transition-[background-color,border-color,translate,box-shadow] duration-200 active:translate-y-px ${variants[variant]} ${sizes[size]} ${className}`}
     >
       {children}
       {icon && (

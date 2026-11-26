@@ -9,6 +9,15 @@ import { navLinks, site } from "@/lib/site";
 export function Header() {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState<string | null>(null);
+  const [scrolled, setScrolled] = useState(false);
+
+  // Frosted-glass header once the page has scrolled past the top bar.
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   // Highlight the nav link of the section currently in view.
   useEffect(() => {
@@ -42,7 +51,13 @@ export function Header() {
   }, [open]);
 
   return (
-    <header className="on-dark sticky top-0 z-40 border-b border-white/8 bg-navy-900">
+    <header
+      className={`on-dark sticky top-0 z-40 border-b transition-[background-color,box-shadow,border-color] duration-300 ${
+        scrolled || open
+          ? "glass-blur border-white/10 bg-navy-900/90 shadow-[0_10px_30px_-12px_rgb(3_8_26/0.55)]"
+          : "border-white/8 bg-navy-900"
+      }`}
+    >
       <div className="container-page flex h-[72px] items-center justify-between gap-4 lg:h-20">
         <Logo preload />
 
@@ -53,7 +68,7 @@ export function Header() {
                 <a
                   href={link.href}
                   aria-current={active === link.href ? "true" : undefined}
-                  className={`rounded-md py-2 text-[15px] leading-6 font-medium transition-colors hover:text-white ${active === link.href ? "text-white" : "text-on-dark-muted"}`}
+                  className={`relative rounded-md py-2 text-[15px] leading-6 font-medium transition-colors duration-200 after:absolute after:inset-x-0 after:bottom-0.5 after:h-0.5 after:origin-left after:rounded-full after:bg-green-bright after:transition-transform after:duration-300 hover:text-white hover:after:scale-x-100 ${active === link.href ? "text-white after:scale-x-100" : "text-on-dark-muted after:scale-x-0"}`}
                 >
                   {link.label}
                 </a>
@@ -99,7 +114,7 @@ export function Header() {
       <div
         id="mobile-menu"
         hidden={!open}
-        className="border-t border-white/8 bg-navy-900 lg:hidden"
+        className="border-t border-white/8 lg:hidden"
         onClick={(e) => (e.target as HTMLElement).closest("a") && setOpen(false)}
       >
         <nav aria-label="Mobile" className="container-page py-4">
@@ -108,7 +123,7 @@ export function Header() {
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className="flex min-h-12 items-center rounded-lg px-2 text-base font-medium text-white hover:bg-white/6"
+                  className={`flex min-h-12 items-center rounded-lg px-3 text-base font-medium transition-colors duration-200 hover:bg-white/6 ${active === link.href ? "bg-white/6 text-white" : "text-white/90"}`}
                 >
                   {link.label}
                 </a>

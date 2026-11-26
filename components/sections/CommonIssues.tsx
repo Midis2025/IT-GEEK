@@ -17,7 +17,7 @@ const issues: Issue[] = [
 
 export function CommonIssues() {
   return (
-    <section id="common-issues" aria-labelledby="issues-title" className="section-y bg-subtle">
+    <section id="common-issues" aria-labelledby="issues-title" className="section-y bg-ambient-subtle">
       <div className="container-page flex flex-col items-center gap-10 lg:gap-14">
         <SectionHeader
           id="issues-title"
@@ -26,13 +26,13 @@ export function CommonIssues() {
           subtitle="Everyday problems our technicians help with — software issues and virus removal are often handled online."
         />
 
-        <ul className="grid w-full gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
+        <ul data-reveal-group className="grid w-full gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
           {issues.map((issue) => {
             const m365 = issue.type === "Microsoft 365";
             return (
-              <li key={issue.title} className="flex flex-col gap-4 rounded-2xl border border-line bg-white p-6 sm:p-7 lg:p-6 xl:p-7">
+              <li key={issue.title} className="glass-light lift flex flex-col gap-4 rounded-2xl p-6 sm:p-7 lg:p-6 xl:p-7">
                 <div className="flex items-center justify-between gap-3">
-                  <span className={`flex size-12 shrink-0 items-center justify-center rounded-xl ${m365 ? "bg-brand-soft" : "bg-green-soft"}`}>
+                  <span className={`flex size-12 shrink-0 items-center justify-center rounded-xl ring-1 ring-inset ${m365 ? "bg-brand-soft ring-brand/10" : "bg-green-soft ring-green/10"}`}>
                     <Icon name={issue.icon} size={24} />
                   </span>
                   <span
@@ -48,7 +48,7 @@ export function CommonIssues() {
           })}
         </ul>
 
-        <div className="flex w-full max-w-[860px] flex-col items-center gap-4 rounded-3xl border border-line bg-white p-5 text-center sm:w-auto sm:flex-row sm:gap-5 sm:rounded-full sm:py-4 sm:pr-4 sm:pl-7 sm:text-left">
+        <div data-reveal className="glass-light flex w-full max-w-[860px] flex-col items-center gap-4 rounded-3xl p-5 text-center sm:w-auto sm:flex-row sm:gap-5 sm:rounded-full sm:py-4 sm:pr-4 sm:pl-7 sm:text-left">
           <Icon name="issue-message" size={20} className="max-sm:hidden" />
           <p className="text-base leading-[26px] text-heading lg:whitespace-nowrap">
             Don’t see your issue? If it’s Microsoft 365 or security related, we can help.

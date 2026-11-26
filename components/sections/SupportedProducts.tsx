@@ -15,11 +15,11 @@ export function SupportedProducts() {
         <p id="products-title" className="text-center text-sm leading-5 font-semibold text-body">
           Specialist support for the Microsoft 365 apps and security tools your day depends on
         </p>
-        <ul className="flex max-w-[1040px] flex-wrap justify-center gap-2.5 sm:gap-3">
+        <ul data-reveal-group className="flex max-w-[1040px] flex-wrap justify-center gap-2.5 sm:gap-3">
           {products.map((p) => (
             <li
               key={p.label}
-              className="flex items-center gap-2 rounded-full border border-line bg-white py-2.5 pr-[18px] pl-4 text-sm leading-5 font-semibold text-heading"
+              className="glass-light lift flex items-center gap-2 rounded-full py-2.5 pr-[18px] pl-4 text-sm leading-5 font-semibold text-heading hover:translate-y-[-2px]"
             >
               <Icon name={p.icon} size={18} />
               {p.label}

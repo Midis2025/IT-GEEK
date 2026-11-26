@@ -3,9 +3,9 @@ import { site, withBasePath } from "@/lib/site";
 
 export function FinalCta() {
   return (
-    <section id="contact" aria-labelledby="cta-title" className="bg-white pb-16 md:pb-20 lg:pb-28">
+    <section id="contact" aria-labelledby="cta-title" className="bg-subtle pb-16 md:pb-20 lg:pb-24">
       <div className="container-page">
-        <div className="on-dark relative isolate flex flex-col gap-8 overflow-hidden rounded-[24px] bg-brand p-7 sm:rounded-[32px] sm:p-12 lg:flex-row lg:items-center lg:justify-between lg:gap-14 lg:p-[72px]">
+        <div data-reveal className="on-dark relative isolate flex flex-col gap-8 overflow-hidden rounded-[24px] bg-[linear-gradient(125deg,var(--color-navy-900)_0%,var(--color-navy-800)_45%,var(--color-brand)_135%)] p-7 shadow-floating ring-1 ring-white/10 ring-inset sm:rounded-[32px] sm:p-12 lg:flex-row lg:items-center lg:justify-between lg:gap-14 lg:p-[72px]">
           <img
             src={withBasePath("/figma/cta-ring-left.svg")}
             alt=""
@@ -22,12 +22,18 @@ export function FinalCta() {
             height={520}
             className="pointer-events-none absolute -top-[260px] -right-[180px] -z-10 max-w-none"
           />
+          {/* Ambient highlights and a faint grid, kept to the edges. */}
+          <div aria-hidden="true" className="tech-grid pointer-events-none absolute inset-0 -z-10" />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-48 -bottom-56 -z-10 size-[640px] bg-[radial-gradient(closest-side,rgb(11_99_229/0.4),transparent)]"
+          />
 
           <div className="flex max-w-[828px] flex-col gap-4 text-white">
             <h2 id="cta-title" className="text-h2">
               Stuck right now? Let’s get it sorted.
             </h2>
-            <p className="text-lead">
+            <p className="text-lead text-on-dark-muted">
               Talk to a Microsoft 365 or antivirus specialist about secure remote help — and if we can’t fix it, you
               don’t pay (terms apply).
             </p>
@@ -40,7 +46,7 @@ export function FinalCta() {
             <Button href={site.phoneHref} variant="outline-dark" icon="cta-phone" className="w-full">
               Call {site.phoneDisplay}
             </Button>
-            <p className="text-center text-sm leading-[22px] text-white">{site.hours}</p>
+            <p className="text-center text-sm leading-[22px] text-on-dark-muted">{site.hours}</p>
           </div>
         </div>
       </div>
