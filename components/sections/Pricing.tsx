@@ -17,58 +17,59 @@ type Plan = {
   featured?: boolean;
 };
 
+// Source: https://itgeek.com.au/plans-and-pricing/ (prices exclude GST and card processing fees).
 const plans: Plan[] = [
   {
-    name: "One-off Fix",
+    name: "Online support",
     icon: "plan-wrench",
-    description: "One Microsoft 365 or virus problem, fixed remotely by a specialist.",
-    price: "$99",
-    unit: "/ issue",
-    note: "AUD, inc. GST · No fix, no pay",
+    description: "Best for software issues, configuration, updates, virus removal and general troubleshooting.",
+    price: "A$70",
+    unit: "/ hour",
+    note: "From AUD 70 · Excl. GST · Business days 9am–6pm",
     features: [
-      "Remote fix by a specialist",
-      "Outlook, Teams, OneDrive & more",
+      "Professional technicians",
+      "Secure remote tools",
+      "Clear scope of work",
+      "Microsoft Office & email help",
       "Virus & malware removal",
-      "Plain-English summary of the fix",
-      "7-day follow-up support",
     ],
     cta: "Request support",
-    topic: "One-off Fix ($99)",
+    topic: "Online support (from A$70/hour)",
   },
   {
-    name: "Home Protect",
+    name: "Smart Care annual",
     icon: "plan-home",
-    description: "Premium antivirus plus on-call Microsoft 365 help for your household.",
-    price: "$19",
-    unit: "/ month",
-    note: "AUD, inc. GST · Up to 5 devices",
+    description: "ITGeek Smart Care annual online support plans, on a one-year contract.",
+    price: "A$299",
+    unit: "/ year",
+    note: "From AUD 299 · Excl. GST · One-year contract",
     features: [
-      "Premium antivirus licence included",
-      "Setup on up to 5 devices",
-      "Priority Microsoft 365 help",
-      "Monthly security health check",
-      "Phishing & scam email checks",
+      "Basic — A$299 / year",
+      "Standard — A$499 / year",
+      "Premium — A$699 / year",
+      "Online support available 24/7/365",
+      "No fix, no pay — terms apply",
     ],
-    cta: "Get protected",
-    topic: "Home Protect ($19/month)",
+    cta: "Ask about annual plans",
+    topic: "Smart Care annual plan (from A$299/year)",
     featured: true,
   },
   {
-    name: "Business Care",
+    name: "Onsite support",
     icon: "plan-building",
-    description: "Managed Microsoft 365 and endpoint security for small teams.",
-    price: "$39",
-    unit: "/ user / month",
-    note: "AUD, inc. GST · Minimum 3 users",
+    description: "Onsite visits during business hours, within ITGeek’s service coverage area.",
+    price: "A$70",
+    unit: "/ hour",
+    note: "From AUD 70 + A$150 call-out fee · Excl. GST",
     features: [
-      "Unlimited Microsoft 365 support",
-      "Microsoft Defender management",
-      "User onboarding & offboarding",
-      "MFA, backup & security policies",
-      "Dedicated account specialist",
+      "Business days, 9am–6pm",
+      "Professional technicians",
+      "Clear scope of work",
+      "Parts, travel and weekend surcharges extra",
+      "Contact us to confirm coverage",
     ],
     cta: "Talk to our team",
-    topic: "Business Care ($39/user/month)",
+    topic: "Onsite support (from A$70/hour)",
   },
 ];
 
@@ -86,7 +87,7 @@ function PlanCard({ plan }: { plan: Plan }) {
         </span>
         {dark && (
           <span className="rounded-full bg-green-bright/16 px-3 py-1.5 text-sm leading-5 font-semibold text-green-bright">
-            Most popular
+            Annual plans
           </span>
         )}
       </div>
@@ -133,7 +134,7 @@ export function Pricing() {
           id="pricing-title"
           eyebrow="Pricing"
           title="Simple, upfront pricing"
-          subtitle="Pay per fix or stay protected all year. Every plan is delivered by Microsoft 365 and security specialists."
+          subtitle="Pay by the hour or choose an annual plan. Prices exclude GST and any card processing fees charged by your bank."
         />
         <ul className="grid w-full max-w-[480px] items-stretch gap-6 lg:max-w-none lg:grid-cols-3">
           {plans.map((plan) => (
@@ -141,10 +142,10 @@ export function Pricing() {
           ))}
         </ul>
         <p className="text-center text-sm leading-[22px] text-muted">
-          Larger team or a one-off project like a full Microsoft 365 migration?{" "}
+          Business with multiple devices? Custom plans are available.{" "}
           <a
             href="#contact"
-            data-enquiry="Business Care ($39/user/month)"
+            data-enquiry="Free quote"
             className="font-semibold text-brand underline-offset-4 hover:underline"
           >
             Talk to us about a tailored quote.

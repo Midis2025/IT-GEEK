@@ -6,13 +6,13 @@ type Issue = { icon: string; type: "Microsoft 365" | "Security"; title: string; 
 
 const issues: Issue[] = [
   { icon: "mail-blue", type: "Microsoft 365", title: "Outlook won’t send or receive", text: "Stuck outbox, endless password prompts, missing emails or a corrupt profile." },
-  { icon: "issue-video", type: "Microsoft 365", title: "Teams calls drop or won’t sign in", text: "Audio and video problems, sign-in loops, missing chats and meeting glitches." },
-  { icon: "issue-cloud", type: "Microsoft 365", title: "OneDrive or SharePoint won’t sync", text: "Sync errors, duplicate files, red crosses and documents that won’t open." },
-  { icon: "issue-key", type: "Microsoft 365", title: "Activation & licence errors", text: "“Unlicensed product” banners, wrong subscriptions and account mix-ups." },
+  { icon: "issue-cloud", type: "Microsoft 365", title: "OneDrive won’t sync", text: "Sync errors, duplicate files, red crosses and documents that won’t open." },
+  { icon: "product-word", type: "Microsoft 365", title: "Word or Excel won’t open", text: "Files that won’t open or save, crashes and confusing error messages." },
+  { icon: "issue-key", type: "Microsoft 365", title: "Office errors after an update", text: "Apps that won’t start, missing features and updates that fail to install." },
   { icon: "issue-bug", type: "Security", title: "Pop-ups, slowdowns or a virus", text: "Full malware scan and clean-up, including browser hijackers and adware." },
-  { icon: "issue-shield-alert", type: "Security", title: "Ransomware or a hacked account", text: "Rapid containment, account lockdown and recovery before damage spreads." },
-  { icon: "issue-lock", type: "Security", title: "Clicked a phishing link?", text: "We check what was exposed, reset passwords and secure your mailbox." },
-  { icon: "issue-shield-check", type: "Security", title: "Antivirus expired or clashing", text: "Renewals, removing duplicate security tools and setting up proper protection." },
+  { icon: "issue-shield-alert", type: "Security", title: "Spyware or a Trojan", text: "Finding and removing spyware, Trojans and other malicious software." },
+  { icon: "issue-lock", type: "Security", title: "Passwords & firewall setup", text: "Setting up a password manager, firewall and browser ad blocker." },
+  { icon: "issue-shield-check", type: "Security", title: "No security software?", text: "Installing internet security software so your devices stay protected." },
 ];
 
 export function CommonIssues() {
@@ -23,7 +23,7 @@ export function CommonIssues() {
           id="issues-title"
           eyebrow="Common issues"
           title="Sound familiar? We fix it fast."
-          subtitle="These are the problems we solve every day — most of them in a single remote session."
+          subtitle="Everyday problems our technicians help with — software issues and virus removal are often handled online."
         />
 
         <ul className="grid w-full gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">

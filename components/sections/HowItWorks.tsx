@@ -10,7 +10,7 @@ const steps = [
   {
     icon: "step-monitor",
     title: "Secure remote session",
-    text: "With your permission we connect over a secure remote session, and you can watch as we work.",
+    text: "We connect using secure remote tools, and only access your device with your permission.",
   },
   {
     icon: "step-shield",

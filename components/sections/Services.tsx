@@ -24,16 +24,16 @@ const services: Service[] = [
     chip: "Microsoft 365",
     title: "Microsoft 365 Support",
     description:
-      "Setup, troubleshooting and day-to-day management of the Microsoft 365 apps your home or business runs on.",
+      "Setup and troubleshooting for the Microsoft Office apps and email your home or business runs on.",
     items: [
-      "Outlook & email delivery",
-      "Teams calls, chat & sign-in",
-      "OneDrive & SharePoint",
-      "Licensing & activation",
+      "Outlook & email setup",
+      "OneDrive help",
       "Excel, Word & PowerPoint",
-      "New setups & migrations",
-      "Onboarding & offboarding",
-      "MFA & account recovery",
+      "OneNote, Access & Publisher",
+      "Microsoft Office help",
+      "Windows help & installation",
+      "Software & driver installation",
+      "Computer backup help",
     ],
     cta: "Get Microsoft 365 help",
     topic: "Microsoft 365 help",
@@ -44,16 +44,16 @@ const services: Service[] = [
     icon: "service-shield",
     chip: "Security",
     title: "Antivirus & Malware Protection",
-    description: "Remove infections, lock down accounts and keep every device protected with properly configured antivirus.",
+    description: "Remove infections and keep your devices protected with properly installed security software.",
     items: [
       "Virus & malware removal",
-      "Ransomware response",
-      "Antivirus install & renewals",
-      "Microsoft Defender setup",
-      "Phishing & scam checks",
-      "Hacked account recovery",
-      "Security health checks",
-      "Ongoing threat monitoring",
+      "Spyware & adware removal",
+      "Trojan removal",
+      "Security software installation",
+      "Internet security",
+      "Firewall setup",
+      "Password manager setup",
+      "Browser ad blocker setup",
     ],
     cta: "Get antivirus help",
     topic: "Antivirus & security help",
@@ -115,7 +115,7 @@ export function Services() {
           id="services-title"
           eyebrow="What we do"
           title="Two specialties. Zero distractions."
-          subtitle="This dedicated help desk handles Microsoft 365 and antivirus support — so every call reaches a specialist who has solved your exact problem before."
+          subtitle="This dedicated help desk handles Microsoft 365 and antivirus support — so you reach professional technicians focused on these areas."
         />
         <div className="grid gap-6 lg:grid-cols-2">
           {services.map((s) => (

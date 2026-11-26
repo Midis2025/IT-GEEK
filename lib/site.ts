@@ -49,7 +49,7 @@ export const site = {
   domain: new URL(officialSite).host,
   title: "ITGeek | Microsoft 365 Support & Antivirus Specialists in Australia",
   description:
-    "Australian remote help desk for Microsoft 365 and antivirus. Outlook, Teams, OneDrive, malware and ransomware sorted remotely by specialists — no fix, no pay.",
+    "Australian remote help desk for Microsoft 365 and antivirus. Outlook, OneDrive, Office, virus and malware problems sorted remotely by professional technicians — no fix, no pay.",
 
   // Customer support contact
   phoneDisplay: phone.display,
@@ -149,10 +149,29 @@ export const launchChecks: readonly LaunchCheck[] = [
     where: "NEXT_PUBLIC_SITE_URL",
   },
 
-  // ── Awaiting client approval ──
-  { id: "pricing", verified: false, item: "Campaign prices and inclusions: $99/issue, $19/month (up to 5 devices, premium antivirus licence, priority help, monthly health check, phishing checks), $39/user/month (min 3 users, unlimited M365 support, Defender management, on/offboarding, MFA/backup policies, dedicated account specialist), 7-day follow-up", where: "components/sections/Pricing.tsx", note: "Differs from official plans (online hourly from AUD 70, annual from AUD 299, “plans from AUD 49.99”) — may be a separate campaign" },
-  { id: "service-inclusions", verified: false, item: "Service checklists and product coverage not listed on itgeek.com.au: Teams, SharePoint, Exchange Online, licensing, migrations, on/offboarding, MFA, ransomware response, Defender setup, phishing checks, hacked-account recovery, ongoing threat monitoring", where: "Services.tsx, SupportedProducts.tsx, CommonIssues.tsx, Footer.tsx (service links), Pricing.tsx (migration note)", note: "Official services include Microsoft Office/Outlook/OneDrive help, virus & malware removal, cybersecurity" },
-  { id: "remote-process", verified: false, item: "Remote-session process wording: connect with your permission, you can watch as we work, nothing accessed without your OK", where: "HowItWorks.tsx, WhyItGeek.tsx, FAQ, EnquiryDialog.tsx", note: "Official site says “Secure support”; confirm the remote-access process matches" },
+  // ── Re-verified against itgeek.com.au (26 Nov 2026); unsupported campaign claims removed ──
+  {
+    id: "pricing",
+    verified: true,
+    item: "Pricing replaced with the official published plans: online support from A$70/hour (business days 9am–6pm); Smart Care annual plans Basic A$299, Standard A$499, Premium A$699 per year (one-year contract, online support 24/7/365); onsite support from A$70/hour + A$150 call-out fee (parts, travel and weekend surcharges extra); all prices excl. GST and card fees. Campaign $99/$19/$39 plans and their inclusions removed.",
+    where: "components/sections/Pricing.tsx, lib/enquiry.ts (topics), app/page.tsx (priceRange)",
+    source: `${officialSite}/plans-and-pricing/ (rendered page, desktop and mobile)`,
+    note: "The official FAQ still says “Plans start from AUD 49.99” and “Onsite visits start from AUD 49 per hour”, which conflicts with the Plans & Pricing page — ask the client to align the corporate site",
+  },
+  {
+    id: "service-inclusions",
+    verified: true,
+    item: "Service checklists, product pills, common issues, footer links and structured data now list only services on the official Services page (Outlook/email, OneDrive, Excel/Word/PowerPoint, OneNote/Access/Publisher, Microsoft Office, Windows, software/drivers, backup; virus/malware/spyware/adware/Trojan removal, security installation, internet security, firewall, password manager, ad blocker). Removed: Teams, SharePoint, Exchange Online, licensing, migrations, on/offboarding, MFA, ransomware response, Defender, phishing checks, hacked-account recovery, threat monitoring, health checks, “all major antivirus brands”",
+    where: "Services.tsx, SupportedProducts.tsx, CommonIssues.tsx, Footer.tsx, Hero.tsx (example card), lib/faq.ts, app/page.tsx",
+    source: `${officialSite}/services/ · /faq/`,
+  },
+  {
+    id: "remote-process",
+    verified: true,
+    item: "Remote-session wording matches the official FAQ (“We use secure remote tools and only access your device with permission”). Removed: “you can watch as we work”",
+    where: "HowItWorks.tsx, WhyItGeek.tsx, lib/faq.ts, EnquiryDialog.tsx, Hero.tsx",
+    source: `${officialSite}/faq/`,
+  },
 ];
 
 export const unverifiedLaunchChecks = launchChecks.filter((c) => !c.verified);

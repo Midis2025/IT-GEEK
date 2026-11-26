@@ -38,7 +38,7 @@ const structuredData = {
         addressCountry: site.address.country,
       },
       areaServed: { "@type": "Country", name: site.country },
-      priceRange: "$19–$99 AUD",
+      priceRange: "From A$70 (excl. GST)",
       openingHoursSpecification: {
         "@type": "OpeningHoursSpecification",
         dayOfWeek: site.openingHours.days,
@@ -46,7 +46,7 @@ const structuredData = {
         closes: site.openingHours.closes,
       },
       ...(site.social.length > 0 ? { sameAs: site.social } : {}),
-      knowsAbout: ["Microsoft 365", "Outlook", "Microsoft Teams", "OneDrive", "SharePoint", "Antivirus", "Malware removal", "Ransomware response"],
+      knowsAbout: ["Microsoft 365", "Microsoft Office", "Outlook", "OneDrive", "Antivirus", "Virus removal", "Malware removal", "Firewall setup"],
     },
     {
       "@type": "WebSite",

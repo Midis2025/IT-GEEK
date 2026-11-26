@@ -1,67 +1,45 @@
 # ITGeek landing page — client approval checklist
 
-Please review the page and confirm, change or remove each item below. Items marked **Pending** are on the page now
-but are not on itgeek.com.au, so the production build stays blocked until you confirm them (`lib/site.ts → launchChecks`).
+Please review the page and confirm, change or remove each item below.
 
-Business details, the four policy links, “No fix, no pay (terms apply)”, “Request a free quote”, support hours and
-the FAQ were already checked against itgeek.com.au and don't need approval unless you want changes.
+Business details, the four policy links, “No fix, no pay (terms apply)”, “Request a free quote”, support hours, pricing,
+services, remote-support wording and the FAQ now match itgeek.com.au (checked 26 Nov 2026).
 
 ---
 
-## 1. Campaign pricing — Pending
+## 1. Pricing — matches the official Plans & Pricing page
 
-Prices are kept exactly as designed. They differ from the plans on itgeek.com.au (online support hourly from AUD 70,
-annual plans from AUD 299, “plans from AUD 49.99”), so please confirm they're a separate campaign offer.
+The campaign plans ($99 per issue, $19 per month, $39 per user per month) and their inclusions were removed because
+they are not on itgeek.com.au. The page now shows the official plans (all prices exclude GST and card fees):
 
-| Plan | Price | Note on page | Inclusions shown | Confirm |
-| --- | --- | --- | --- | --- |
-| One-off Fix | $99 / issue | AUD, inc. GST · No fix, no pay | Remote fix by a specialist · Outlook, Teams, OneDrive & more · Virus & malware removal · Plain-English summary of the fix · **7-day follow-up support** | ☐ |
-| Home Protect (featured) | $19 / month | AUD, inc. GST · Up to 5 devices | **Premium antivirus licence included** · Setup on up to 5 devices · **Priority** Microsoft 365 help · **Monthly** security health check · Phishing & scam email checks | ☐ |
-| Business Care | $39 / user / month | AUD, inc. GST · **Minimum 3 users** | **Unlimited** Microsoft 365 support · Microsoft Defender management · User onboarding & offboarding · MFA, backup & security policies · **Dedicated account specialist** | ☐ |
+| Card | Price | Details shown |
+| --- | --- | --- |
+| Online support | From A$70 / hour | Business days 9am–6pm · professional technicians · secure remote tools · clear scope of work |
+| Smart Care annual (featured) | From A$299 / year | Basic A$299 · Standard A$499 · Premium A$699 per year · one-year contract · online support 24/7/365 · no fix, no pay (terms apply) |
+| Onsite support | From A$70 / hour + A$150 call-out fee | Business days 9am–6pm · parts, travel and weekend surcharges extra · within the service coverage area |
 
-Also: “Larger team or a one-off project like a full Microsoft 365 migration? Talk to our team” (below the plans), and
-the matching enquiry-form topics. File: `components/sections/Pricing.tsx`, topics in `lib/enquiry.ts`.
+**Please check:** the official FAQ says “Plans start from AUD 49.99” and “Onsite visits start from AUD 49 per hour”,
+which contradicts the Plans & Pricing page. Tell us which is correct (and update the corporate site), or supply
+approved campaign pricing to use instead.
 
-## 2. Service coverage — Pending
+## 2. Services — only services listed on itgeek.com.au
 
-Please tick each service ITGeek provides; anything unticked will be removed or reworded.
+Removed because they are not on the official site: Microsoft Teams, SharePoint, Exchange Online, licensing &
+activation, Microsoft 365 migrations, user on/offboarding, MFA & account recovery, backup policies, Microsoft
+Defender, “all major antivirus brands”, included antivirus licence, ransomware response, hacked-account recovery,
+phishing & scam checks, security health checks, ongoing threat monitoring.
 
-| Service / feature | Where it appears on the page | File(s) | Confirm |
-| --- | --- | --- | --- |
-| Microsoft Teams | Hero intro and example card · Services checklist · Common issues (“Teams calls drop…”) · Supported products · Pricing (One-off Fix) · Footer link “Teams support” | `Hero.tsx`, `Services.tsx`, `CommonIssues.tsx`, `SupportedProducts.tsx`, `Pricing.tsx`, `Footer.tsx` | ☐ |
-| SharePoint | Services (“OneDrive & SharePoint”) · Common issues (sync) · Supported products · Footer link | `Services.tsx`, `CommonIssues.tsx`, `SupportedProducts.tsx`, `Footer.tsx` | ☐ |
-| Exchange Online | Supported products | `SupportedProducts.tsx` | ☐ |
-| Excel, Word & PowerPoint | Services · Supported products | `Services.tsx`, `SupportedProducts.tsx` | ☐ |
-| Licensing & activation | Services · Common issues · Hero example card · Footer link | `Services.tsx`, `CommonIssues.tsx`, `Hero.tsx`, `Footer.tsx` | ☐ |
-| Microsoft 365 setups & migrations | Services (“New setups & migrations”) · Pricing note (“full Microsoft 365 migration”) · Footer link “Setup & migration” | `Services.tsx`, `Pricing.tsx`, `Footer.tsx` | ☐ |
-| User onboarding & offboarding | Services · Business Care plan | `Services.tsx`, `Pricing.tsx` | ☐ |
-| Multi-factor authentication (MFA) & account recovery | Services (“MFA & account recovery”) · Business Care (“MFA, backup & security policies”) | `Services.tsx`, `Pricing.tsx` | ☐ |
-| Backup policies | Business Care plan | `Pricing.tsx` | ☐ |
-| Microsoft Defender | Services (“Microsoft Defender setup”) · Business Care (“Defender management”) · Supported products · FAQ · Footer link | `Services.tsx`, `Pricing.tsx`, `SupportedProducts.tsx`, `lib/faq.ts`, `Footer.tsx` | ☐ |
-| Antivirus support (install, renewals, conflicts) | Services · Common issues (“Antivirus expired or clashing”) · Footer link · FAQ | `Services.tsx`, `CommonIssues.tsx`, `Footer.tsx`, `lib/faq.ts` | ☐ |
-| “All major antivirus brands” | Supported products | `SupportedProducts.tsx` | ☐ |
-| Premium antivirus licence included | Home Protect plan | `Pricing.tsx` | ☐ |
-| Ransomware response | Services · Common issues (“Ransomware or a hacked account — rapid containment…”) · Footer link | `Services.tsx`, `CommonIssues.tsx`, `Footer.tsx` | ☐ |
-| Hacked account recovery | Services · Common issues | `Services.tsx`, `CommonIssues.tsx` | ☐ |
-| Phishing & scam checks | Services · Common issues (“Clicked a phishing link?”) · Home Protect plan | `Services.tsx`, `CommonIssues.tsx`, `Pricing.tsx` | ☐ |
-| Security health checks | Services · Home Protect (“Monthly security health check”) · Footer link | `Services.tsx`, `Pricing.tsx`, `Footer.tsx` | ☐ |
-| Ongoing threat monitoring | Services (antivirus checklist) | `Services.tsx` | ☐ |
-| “Most of them in a single remote session” | Common issues subtitle | `CommonIssues.tsx` | ☐ |
+Shown now (from itgeek.com.au/services): Outlook & email setup, OneDrive, Excel/Word/PowerPoint, OneNote/Access/
+Publisher, Microsoft Office help, Windows help & installation, software & driver installation, computer backup help;
+virus, malware, spyware, adware and Trojan removal, security software installation, internet security, firewall,
+password manager and browser ad blocker setup.
 
-Already confirmed by itgeek.com.au (no action needed): Microsoft Office / Outlook / OneDrive help, virus & malware
-removal, cybersecurity, remote support, onsite support (costs confirmed first).
+If ITGeek does offer any removed service, confirm it in writing (ideally add it to itgeek.com.au) and it can be restored.
 
-## 3. Remote-session wording — Pending
+## 3. Remote-support wording — matches the official FAQ
 
-Please confirm these statements match how your technicians actually connect:
-
-| Statement on the page | Where | File | Confirm |
-| --- | --- | --- | --- |
-| “With your permission we connect over a secure remote session, and you can watch as we work.” | How it works, step 2 | `components/sections/HowItWorks.tsx` | ☐ |
-| “Your OK comes first — Nothing on your device is accessed without your permission.” | Why ITGeek | `components/sections/WhyItGeek.tsx` | ☐ |
-| “With your permission, your specialist connects to your device through a secure remote session. You can watch as they work, and nothing is accessed without your OK.” | FAQ (also in Google structured data) | `lib/faq.ts` | ☐ |
-| “Nothing is accessed on your device without your OK.” | Enquiry form, under the Send button | `components/EnquiryDialog.tsx` | ☐ |
-| “Secure remote help” | Hero trust row | `components/sections/Hero.tsx` | ☐ |
+The page now follows the FAQ answer “We use secure remote tools and only access your device with permission.”
+“You can watch as we work” was removed.
 
 ## 4. Hero example card — for information
 

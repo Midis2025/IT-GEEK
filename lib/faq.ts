@@ -5,11 +5,11 @@ export const faqs = [
   },
   {
     q: "How does remote support work?",
-    a: "With your permission, your specialist connects to your device through a secure remote session. You can watch as they work, and nothing is accessed without your OK.",
+    a: "Your technician connects to your device using secure remote tools. We only access your device with your permission.",
   },
   {
-    q: "Which antivirus products do you support?",
-    a: "We help with Microsoft Defender and other common antivirus and security software — from removing viruses and malware to recommending and setting up the right protection.",
+    q: "What antivirus and security help do you offer?",
+    a: "We install and set up internet security software, set up firewalls and password managers, and remove viruses, malware, spyware, adware and Trojans.",
   },
   {
     q: "Can you look after my business, not just my home PC?",
@@ -21,6 +21,6 @@ export const faqs = [
   },
   {
     q: "Do you need to visit my home or office?",
-    a: "Usually not. Most Microsoft 365 and virus issues can be resolved remotely. If a visit is needed, ITGeek also offers onsite support and will confirm any costs with you first.",
+    a: "Often not. Online support is best for software issues, configuration, updates and virus removal. Onsite visits are available during business hours within our service coverage area — contact us to confirm availability.",
   },
 ] as const;

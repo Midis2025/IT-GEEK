@@ -6,9 +6,8 @@ Conversion-focused landing page for ITGeek (Microsoft 365 & antivirus remote sup
 **Stack:** Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4 · `next/font` (Inter, Plus Jakarta Sans).
 Requires **Node.js 20.9+** (developed on Node 24).
 
-> **Not ready to publish.** The page still contains placeholder and unverified content — see
-> [Remaining launch requirements](#remaining-launch-requirements). Production builds on CI/hosting platforms are
-> blocked until those items are verified.
+> **Before publishing:** all content checks are verified against itgeek.com.au. Production builds on CI/hosting
+> platforms still require `NEXT_PUBLIC_SITE_URL` (see [Remaining launch requirements](#remaining-launch-requirements)).
 
 ## Installation
 
@@ -94,7 +93,7 @@ Without a webhook (or if it fails), the form shows an error with the phone numbe
 | `name` | string | required, ≤ 80 characters |
 | `email` | string | required, valid email, ≤ 254 characters |
 | `phone` | string | optional (empty string if not given); Australian number if provided, ≤ 20 characters |
-| `topic` | string | one of the fixed topics in `lib/enquiry.ts` (e.g. “Microsoft 365 help”, “Free quote”, “Business Care ($39/user/month)”) |
+| `topic` | string | one of the fixed topics in `lib/enquiry.ts` (e.g. “Microsoft 365 help”, “Free quote”, “Online support (from A$70/hour)”) |
 | `message` | string | required, ≤ 2,000 characters |
 | `source` | string | always `itgeek-landing` — use it to tag and route these leads |
 | `submittedAt` | string | ISO 8601 UTC timestamp |
@@ -282,13 +281,12 @@ next.config.ts          security headers + launch guard
 
 Tracked in `lib/site.ts → launchChecks`; CI/hosting builds stay blocked until every item is verified.
 
-**Awaiting client approval**
-- **Campaign pricing and inclusions** — $99/issue, $19/month, $39/user/month and the listed plan inclusions (kept
-  unchanged; they differ from the corporate plans and may be a separate campaign).
-- **Service coverage** — service checklists/products not listed on itgeek.com.au (Teams, SharePoint, Exchange Online,
-  migrations, on/offboarding, MFA, ransomware response, Defender setup, phishing checks, threat monitoring).
-- **Remote-session process** — “connect with your permission, you can watch as we work, nothing accessed without your OK”.
-- **Deployment URL** — proposed `https://support.itgeek.com.au` (verified automatically once set).
+**Content** — pricing, service coverage and remote-support wording were re-verified against itgeek.com.au and the
+unsupported campaign claims removed (see `CLIENT-APPROVAL.md`). The official FAQ's “from AUD 49.99 / AUD 49 per hour”
+conflicts with the Plans & Pricing page; the page follows Plans & Pricing until the client confirms.
+
+**Deployment URL** — set `NEXT_PUBLIC_SITE_URL` in the hosting environment (proposed `https://support.itgeek.com.au`).
+CI/hosting builds fail without it.
 
 **Testimonials**
 - Add genuine, approved reviews to `lib/testimonials.ts`. Until then the Reviews section and its footer link are

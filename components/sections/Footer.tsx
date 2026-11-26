@@ -8,20 +8,20 @@ const columns = [
     heading: "Microsoft 365",
     links: [
       { label: "Outlook & email support", href: "#microsoft-365" },
-      { label: "Teams support", href: "#microsoft-365" },
-      { label: "OneDrive & SharePoint", href: "#microsoft-365" },
-      { label: "Licensing & activation", href: "#microsoft-365" },
-      { label: "Setup & migration", href: "#microsoft-365" },
+      { label: "OneDrive help", href: "#microsoft-365" },
+      { label: "Excel, Word & PowerPoint", href: "#microsoft-365" },
+      { label: "Microsoft Office help", href: "#microsoft-365" },
+      { label: "Windows help", href: "#microsoft-365" },
     ],
   },
   {
     heading: "Antivirus",
     links: [
       { label: "Virus & malware removal", href: "#antivirus" },
-      { label: "Ransomware response", href: "#antivirus" },
-      { label: "Antivirus setup & renewals", href: "#antivirus" },
-      { label: "Microsoft Defender", href: "#antivirus" },
-      { label: "Security health check", href: "#antivirus" },
+      { label: "Spyware & Trojan removal", href: "#antivirus" },
+      { label: "Security software setup", href: "#antivirus" },
+      { label: "Firewall setup", href: "#antivirus" },
+      { label: "Password manager setup", href: "#antivirus" },
     ],
   },
   {
@@ -115,7 +115,7 @@ export function Footer() {
             </ul>
           </div>
           <p className="opacity-70">
-            Microsoft, Microsoft 365, Outlook, Teams, OneDrive, SharePoint, Excel, Word, PowerPoint and Microsoft Defender
+            Microsoft, Microsoft 365, Microsoft Office, Outlook, OneDrive, Excel, Word, PowerPoint and Windows
             are trademarks of the Microsoft group of companies. ITGeek is an independent support provider and is not
             affiliated with or endorsed by Microsoft. Other antivirus brand names are trademarks of their respective
             owners.

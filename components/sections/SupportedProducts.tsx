@@ -2,14 +2,10 @@ import { Icon } from "@/components/ui/Icon";
 
 const products = [
   { icon: "mail-blue", label: "Outlook" },
-  { icon: "product-teams", label: "Teams" },
   { icon: "product-onedrive", label: "OneDrive" },
-  { icon: "product-sharepoint", label: "SharePoint" },
   { icon: "product-excel", label: "Excel" },
   { icon: "product-word", label: "Word & PowerPoint" },
-  { icon: "product-exchange", label: "Exchange Online" },
-  { icon: "product-defender", label: "Microsoft Defender" },
-  { icon: "product-antivirus", label: "All major antivirus brands" },
+  { icon: "product-antivirus", label: "Antivirus & security software" },
 ];
 
 export function SupportedProducts() {

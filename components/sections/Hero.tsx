@@ -4,9 +4,9 @@ import { refundPolicyUrl, site, withBasePath } from "@/lib/site";
 
 const tickets = [
   { icon: "ticket-mail", tile: "bg-brand-soft", title: "Outlook not syncing", meta: "Microsoft 365 · Fixed remotely", done: true },
-  { icon: "ticket-video", tile: "bg-brand-soft", title: "Teams sign-in loop", meta: "Microsoft 365 · Resolved", done: true },
+  { icon: "product-excel", tile: "bg-brand-soft", title: "Excel file won’t open", meta: "Microsoft 365 · Resolved", done: true },
   { icon: "ticket-bug", tile: "bg-red-soft", title: "Trojan found on laptop", meta: "Antivirus · Device secured", done: true },
-  { icon: "ticket-key", tile: "bg-brand-soft", title: "Office activation error", meta: "Licensing · Tech connected", done: false },
+  { icon: "product-word", tile: "bg-brand-soft", title: "Word keeps crashing", meta: "Office · Tech connected", done: false },
 ];
 
 function SupportDeskVisual() {
@@ -112,7 +112,7 @@ export function Hero() {
 
           <p className="text-lead max-w-[600px] text-on-dark-muted">
             This ITGeek help desk is dedicated to two things: Microsoft 365 and antivirus protection. From Outlook,
-            Teams and OneDrive headaches to malware and online threats, our specialists sort it out remotely — no
+            OneDrive and Office headaches to malware and online threats, our specialists sort it out remotely — no
             waiting for a home visit.
           </p>
 
