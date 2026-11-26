@@ -42,7 +42,7 @@ export const site = {
   /** Verified: legal pages on itgeek.com.au (“IT Geek Pty Ltd”). */
   legalName: "IT Geek Pty Ltd",
   /** Official logo from itgeek.com.au (850×350 JPEG on white; no SVG/transparent version is published). */
-  logo: { src: "/brand/itgeek-logo.jpeg", width: 850, height: 350 },
+  logo: { src: "/brand/itgeek-logo.png", width: 850, height: 350 },
   url: siteUrl,
   officialSite,
   /** Company domain shown in the footer copyright line (the corporate site, not this landing page's host). */

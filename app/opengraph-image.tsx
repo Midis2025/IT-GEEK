@@ -7,9 +7,9 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default async function OpengraphImage() {
-  // Official logo (unaltered) on its original white background.
-  const logo = await readFile(join(process.cwd(), "public/brand/itgeek-logo.jpeg"));
-  const logoSrc = `data:image/jpeg;base64,${logo.toString("base64")}`;
+  // Official logo with a transparent background.
+  const logo = await readFile(join(process.cwd(), "public/brand/itgeek-logo.png"));
+  const logoSrc = `data:image/png;base64,${logo.toString("base64")}`;
   return new ImageResponse(
     (
       <div
@@ -26,7 +26,7 @@ export default async function OpengraphImage() {
         }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={logoSrc} width={243} height={100} alt="" style={{ borderRadius: 12 }} />
+        <img src={logoSrc} width={243} height={100} alt="" />
         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
           <div style={{ display: "flex", flexWrap: "wrap", fontSize: 76, fontWeight: 800, lineHeight: 1.1, letterSpacing: -2 }}>
             <span>Microsoft 365 & antivirus experts who&nbsp;</span>
