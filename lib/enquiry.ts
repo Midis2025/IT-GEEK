@@ -4,9 +4,9 @@ export const ENQUIRY_TOPICS = [
   "Microsoft 365 help",
   "Antivirus & security help",
   "Free quote",
-  "Online support (from A$70/hour)",
-  "Smart Care annual plan (from A$299/year)",
-  "Onsite support (from A$70/hour)",
+  "Online support (A$99)",
+  "Smart Care annual plan (A$99)",
+  "Onsite support (A$99)",
   "Something else",
 ] as const;
 

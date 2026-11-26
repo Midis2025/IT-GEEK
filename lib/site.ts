@@ -149,15 +149,16 @@ export const launchChecks: readonly LaunchCheck[] = [
     where: "NEXT_PUBLIC_SITE_URL",
   },
 
-  // ── Re-verified against itgeek.com.au (26 Nov 2026); unsupported campaign claims removed ──
+  // ── Awaiting client confirmation ──
   {
     id: "pricing",
-    verified: true,
-    item: "Pricing replaced with the official published plans: online support from A$70/hour (business days 9am–6pm); Smart Care annual plans Basic A$299, Standard A$499, Premium A$699 per year (one-year contract, online support 24/7/365); onsite support from A$70/hour + A$150 call-out fee (parts, travel and weekend surcharges extra); all prices excl. GST and card fees. Campaign $99/$19/$39 plans and their inclusions removed.",
+    verified: false,
+    item: "A$99 headline price on all three cards (Online support, Smart Care annual, Onsite support) — confirm the billing frequency for each (one-time, hourly, monthly or annual), GST treatment (inc./excl.) and any extra fees (e.g. call-out, parts, travel), then add them to the cards",
     where: "components/sections/Pricing.tsx, lib/enquiry.ts (topics), app/page.tsx (priceRange)",
-    source: `${officialSite}/plans-and-pricing/ (rendered page, desktop and mobile)`,
-    note: "The official FAQ still says “Plans start from AUD 49.99” and “Onsite visits start from AUD 49 per hour”, which conflicts with the Plans & Pricing page — ask the client to align the corporate site",
+    note: "A$99 is not shown on the published itgeek.com.au Plans & Pricing page (online/onsite from A$70/hour, annual A$299/A$499/A$699, excl. GST); a hidden table there lists “one time fix $99” and onsite “$99 per hour”. The official FAQ also says “Plans start from AUD 49.99”",
   },
+
+  // ── Re-verified against itgeek.com.au (26 Nov 2026); unsupported campaign claims removed ──
   {
     id: "service-inclusions",
     verified: true,

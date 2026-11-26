@@ -9,7 +9,8 @@ type Plan = {
   icon: string;
   description: string;
   price: string;
-  unit: string;
+  /** Billing period, e.g. "/ hour" — omitted while billing terms are unconfirmed. */
+  unit?: string;
   note: string;
   features: string[];
   cta: string;
@@ -17,15 +18,17 @@ type Plan = {
   featured?: boolean;
 };
 
-// Source: https://itgeek.com.au/plans-and-pricing/ (prices exclude GST and card processing fees).
+// A$99 headline price requested for this campaign. Billing frequency, GST treatment and any extra fees are pending
+// client confirmation (lib/site.ts → launchChecks "pricing"), so no period, GST or fee is shown.
+const BILLING_NOTE = "AUD · Contact us to confirm billing details";
+
 const plans: Plan[] = [
   {
     name: "Online support",
     icon: "plan-wrench",
     description: "Best for software issues, configuration, updates, virus removal and general troubleshooting.",
-    price: "A$70",
-    unit: "/ hour",
-    note: "From AUD 70 · Excl. GST · Business days 9am–6pm",
+    price: "A$99",
+    note: BILLING_NOTE,
     features: [
       "Professional technicians",
       "Secure remote tools",
@@ -34,42 +37,40 @@ const plans: Plan[] = [
       "Virus & malware removal",
     ],
     cta: "Request support",
-    topic: "Online support (from A$70/hour)",
+    topic: "Online support (A$99)",
   },
   {
     name: "Smart Care annual",
     icon: "plan-home",
-    description: "ITGeek Smart Care annual online support plans, on a one-year contract.",
-    price: "A$299",
-    unit: "/ year",
-    note: "From AUD 299 · Excl. GST · One-year contract",
+    description: "ITGeek Smart Care online support plan, with support available around the clock.",
+    price: "A$99",
+    note: BILLING_NOTE,
     features: [
-      "Basic — A$299 / year",
-      "Standard — A$499 / year",
-      "Premium — A$699 / year",
+      "Professional technicians",
+      "Secure remote tools",
+      "Clear scope of work",
       "Online support available 24/7/365",
       "No fix, no pay — terms apply",
     ],
     cta: "Ask about annual plans",
-    topic: "Smart Care annual plan (from A$299/year)",
+    topic: "Smart Care annual plan (A$99)",
     featured: true,
   },
   {
     name: "Onsite support",
     icon: "plan-building",
     description: "Onsite visits during business hours, within ITGeek’s service coverage area.",
-    price: "A$70",
-    unit: "/ hour",
-    note: "From AUD 70 + A$150 call-out fee · Excl. GST",
+    price: "A$99",
+    note: BILLING_NOTE,
     features: [
       "Business days, 9am–6pm",
       "Professional technicians",
       "Clear scope of work",
-      "Parts, travel and weekend surcharges extra",
-      "Contact us to confirm coverage",
+      "Hardware, printer & network setup",
+      "Ask us about coverage and extra fees",
     ],
     cta: "Talk to our team",
-    topic: "Onsite support (from A$70/hour)",
+    topic: "Onsite support (A$99)",
   },
 ];
 
@@ -77,8 +78,8 @@ function PlanCard({ plan }: { plan: Plan }) {
   const dark = !!plan.featured;
   return (
     <li
-      className={`flex flex-col gap-6 rounded-3xl p-7 sm:p-9 lg:p-7 xl:p-9 ${
-        dark ? "on-dark bg-navy-900 shadow-floating lg:-my-1" : "border border-line bg-white"
+      className={`flex flex-col gap-6 rounded-3xl p-7 sm:p-9 lg:row-span-6 lg:grid lg:grid-rows-subgrid lg:p-7 xl:p-9 ${
+        dark ? "on-dark border border-transparent bg-navy-900 shadow-floating" : "border border-line bg-white"
       }`}
     >
       <div className="flex items-center justify-between gap-3">
@@ -94,13 +95,15 @@ function PlanCard({ plan }: { plan: Plan }) {
 
       <div className="flex flex-col gap-1.5">
         <h3 className={`text-h4 ${dark ? "text-white" : "text-heading"}`}>{plan.name}</h3>
-        <p className={`text-sm leading-[22px] lg:min-h-[66px] xl:min-h-[44px] ${dark ? "text-on-dark-muted" : "text-body"}`}>{plan.description}</p>
+        <p className={`text-sm leading-[22px] ${dark ? "text-on-dark-muted" : "text-body"}`}>{plan.description}</p>
       </div>
 
       <div className="flex flex-col gap-0.5">
         <p className="flex flex-wrap items-baseline gap-x-1.5">
           <span className={`text-price ${dark ? "text-white" : "text-heading"}`}>{plan.price}</span>
-          <span className={`text-base leading-[26px] ${dark ? "text-on-dark-muted" : "text-muted"}`}>{plan.unit}</span>
+          {plan.unit ? (
+            <span className={`text-base leading-[26px] ${dark ? "text-on-dark-muted" : "text-muted"}`}>{plan.unit}</span>
+          ) : null}
         </p>
         <p className={`text-sm leading-[22px] ${dark ? "text-on-dark-muted" : "text-muted"}`}>{plan.note}</p>
       </div>
@@ -117,7 +120,7 @@ function PlanCard({ plan }: { plan: Plan }) {
         variant={dark ? "primary" : "white"}
         enquiry={plan.topic}
         icon={dark ? "plan-arrow-white" : "plan-arrow-dark"}
-        className="w-full"
+        className={`w-full lg:self-end ${dark ? "border border-transparent" : ""}`}
       >
         {plan.cta}
         <span className="sr-only"> — {plan.name} plan</span>
@@ -134,7 +137,7 @@ export function Pricing() {
           id="pricing-title"
           eyebrow="Pricing"
           title="Simple, upfront pricing"
-          subtitle="Pay by the hour or choose an annual plan. Prices exclude GST and any card processing fees charged by your bank."
+          subtitle="Online, annual and onsite support options. Contact us to confirm billing details for your situation."
         />
         <ul className="grid w-full max-w-[480px] items-stretch gap-6 lg:max-w-none lg:grid-cols-3">
           {plans.map((plan) => (

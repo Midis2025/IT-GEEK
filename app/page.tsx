@@ -38,7 +38,7 @@ const structuredData = {
         addressCountry: site.address.country,
       },
       areaServed: { "@type": "Country", name: site.country },
-      priceRange: "From A$70 (excl. GST)",
+      priceRange: "A$99",
       openingHoursSpecification: {
         "@type": "OpeningHoursSpecification",
         dayOfWeek: site.openingHours.days,

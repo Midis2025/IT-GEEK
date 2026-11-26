@@ -93,7 +93,7 @@ Without a webhook (or if it fails), the form shows an error with the phone numbe
 | `name` | string | required, ≤ 80 characters |
 | `email` | string | required, valid email, ≤ 254 characters |
 | `phone` | string | optional (empty string if not given); Australian number if provided, ≤ 20 characters |
-| `topic` | string | one of the fixed topics in `lib/enquiry.ts` (e.g. “Microsoft 365 help”, “Free quote”, “Online support (from A$70/hour)”) |
+| `topic` | string | one of the fixed topics in `lib/enquiry.ts` (e.g. “Microsoft 365 help”, “Free quote”, “Online support (A$99)”) |
 | `message` | string | required, ≤ 2,000 characters |
 | `source` | string | always `itgeek-landing` — use it to tag and route these leads |
 | `submittedAt` | string | ISO 8601 UTC timestamp |
@@ -281,9 +281,10 @@ next.config.ts          security headers + launch guard
 
 Tracked in `lib/site.ts → launchChecks`; CI/hosting builds stay blocked until every item is verified.
 
-**Content** — pricing, service coverage and remote-support wording were re-verified against itgeek.com.au and the
-unsupported campaign claims removed (see `CLIENT-APPROVAL.md`). The official FAQ's “from AUD 49.99 / AUD 49 per hour”
-conflicts with the Plans & Pricing page; the page follows Plans & Pricing until the client confirms.
+**Pricing (pending)** — all three cards show A$99. Billing frequency, GST treatment and extra fees await client
+confirmation (`launchChecks → pricing`, see `CLIENT-APPROVAL.md`); CI/hosting builds are blocked until then.
+
+**Content** — service coverage and remote-support wording were re-verified against itgeek.com.au.
 
 **Deployment URL** — set `NEXT_PUBLIC_SITE_URL` in the hosting environment (proposed `https://support.itgeek.com.au`).
 CI/hosting builds fail without it.

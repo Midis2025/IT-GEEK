@@ -2,25 +2,25 @@
 
 Please review the page and confirm, change or remove each item below.
 
-Business details, the four policy links, “No fix, no pay (terms apply)”, “Request a free quote”, support hours, pricing,
-services, remote-support wording and the FAQ now match itgeek.com.au (checked 26 Nov 2026).
+Business details, the four policy links, “No fix, no pay (terms apply)”, “Request a free quote”, support hours,
+services, remote-support wording and the FAQ match itgeek.com.au (checked 26 Nov 2026). **Pricing needs confirmation.**
 
 ---
 
-## 1. Pricing — matches the official Plans & Pricing page
+## 1. Pricing — Pending
 
-The campaign plans ($99 per issue, $19 per month, $39 per user per month) and their inclusions were removed because
-they are not on itgeek.com.au. The page now shows the official plans (all prices exclude GST and card fees):
+All three cards show **A$99**. The billing terms are not shown until you confirm them. Each card says
+“AUD · Contact us to confirm billing details”. Please confirm for each card:
 
-| Card | Price | Details shown |
-| --- | --- | --- |
-| Online support | From A$70 / hour | Business days 9am–6pm · professional technicians · secure remote tools · clear scope of work |
-| Smart Care annual (featured) | From A$299 / year | Basic A$299 · Standard A$499 · Premium A$699 per year · one-year contract · online support 24/7/365 · no fix, no pay (terms apply) |
-| Onsite support | From A$70 / hour + A$150 call-out fee | Business days 9am–6pm · parts, travel and weekend surcharges extra · within the service coverage area |
+| Card | Price shown | Billing frequency? | GST inc./excl.? | Extra fees (call-out, parts, travel)? |
+| --- | --- | --- | --- | --- |
+| Online support | A$99 | ☐ one-time ☐ hourly ☐ monthly ☐ annual | ☐ | ☐ |
+| Smart Care annual (featured) | A$99 | ☐ one-time ☐ hourly ☐ monthly ☐ annual | ☐ | ☐ |
+| Onsite support | A$99 | ☐ one-time ☐ hourly ☐ monthly ☐ annual | ☐ | ☐ |
 
-**Please check:** the official FAQ says “Plans start from AUD 49.99” and “Onsite visits start from AUD 49 per hour”,
-which contradicts the Plans & Pricing page. Tell us which is correct (and update the corporate site), or supply
-approved campaign pricing to use instead.
+For reference, the published itgeek.com.au Plans & Pricing page currently shows different prices (online and onsite
+from A$70/hour, onsite + A$150 call-out, annual A$299/A$499/A$699, excl. GST), and its FAQ says “Plans start from
+AUD 49.99”. Please update the corporate site too so the two sites match.
 
 ## 2. Services — only services listed on itgeek.com.au
 
