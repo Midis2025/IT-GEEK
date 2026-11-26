@@ -1,0 +1,24 @@
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+next-env.d.ts
+.vercel/
+
+# Environment files (secrets): only .env.example is committed
+.env
+.env.*
+!.env.example
+
+# Logs and temporary files
+*.log
+npm-debug.log*
+*.tmp
+*.temp
+.cache/
+qa-screenshots/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini

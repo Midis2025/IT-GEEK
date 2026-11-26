@@ -1,0 +1,128 @@
+import { Button } from "@/components/ui/Button";
+import { CheckItem } from "@/components/ui/CheckItem";
+import { Icon } from "@/components/ui/Icon";
+import { SectionHeader } from "@/components/ui/SectionHeader";
+import type { EnquiryTopic } from "@/lib/enquiry";
+
+type Service = {
+  id: string;
+  dark: boolean;
+  icon: string;
+  chip: string;
+  title: string;
+  description: string;
+  items: string[];
+  cta: string;
+  topic: EnquiryTopic;
+};
+
+const services: Service[] = [
+  {
+    id: "microsoft-365",
+    dark: false,
+    icon: "service-grid",
+    chip: "Microsoft 365",
+    title: "Microsoft 365 Support",
+    description:
+      "Setup, troubleshooting and day-to-day management of the Microsoft 365 apps your home or business runs on.",
+    items: [
+      "Outlook & email delivery",
+      "Teams calls, chat & sign-in",
+      "OneDrive & SharePoint",
+      "Licensing & activation",
+      "Excel, Word & PowerPoint",
+      "New setups & migrations",
+      "Onboarding & offboarding",
+      "MFA & account recovery",
+    ],
+    cta: "Get Microsoft 365 help",
+    topic: "Microsoft 365 help",
+  },
+  {
+    id: "antivirus",
+    dark: true,
+    icon: "service-shield",
+    chip: "Security",
+    title: "Antivirus & Malware Protection",
+    description: "Remove infections, lock down accounts and keep every device protected with properly configured antivirus.",
+    items: [
+      "Virus & malware removal",
+      "Ransomware response",
+      "Antivirus install & renewals",
+      "Microsoft Defender setup",
+      "Phishing & scam checks",
+      "Hacked account recovery",
+      "Security health checks",
+      "Ongoing threat monitoring",
+    ],
+    cta: "Get antivirus help",
+    topic: "Antivirus & security help",
+  },
+];
+
+function ServiceCard({ s }: { s: Service }) {
+  return (
+    <article
+      id={s.id}
+      aria-labelledby={`${s.id}-title`}
+      className={`anchor-target flex flex-col gap-7 rounded-[28px] p-6 sm:p-9 lg:p-11 ${
+        s.dark ? "on-dark bg-navy-900 shadow-floating" : "border border-line bg-subtle"
+      }`}
+    >
+      <div className="flex items-center justify-between gap-4">
+        <span className={`flex size-16 items-center justify-center rounded-2xl ${s.dark ? "bg-green" : "bg-brand"}`}>
+          <Icon name={s.icon} size={32} />
+        </span>
+        <span
+          className={`text-eyebrow rounded-full px-3.5 py-1.5 ${s.dark ? "bg-green-bright/16 text-green-bright" : "bg-brand-soft text-brand"}`}
+        >
+          {s.chip}
+        </span>
+      </div>
+
+      <div className="flex flex-col gap-2.5">
+        <h3 id={`${s.id}-title`} className={`text-h3 ${s.dark ? "text-white" : "text-heading"}`}>
+          {s.title}
+        </h3>
+        <p className={`text-base leading-[26px] ${s.dark ? "text-on-dark-muted" : "text-body"}`}>{s.description}</p>
+      </div>
+
+      <hr className={`border-0 border-t ${s.dark ? "border-white/10" : "border-line"}`} />
+
+      <ul className="grid flex-1 content-start gap-x-6 gap-y-[18px] sm:grid-cols-2 lg:grid-cols-1 lg:gap-y-3.5 xl:grid-cols-2 xl:gap-y-[18px]">
+        {s.items.map((item) => (
+          <CheckItem key={item} text={item} dark={s.dark} />
+        ))}
+      </ul>
+
+      <Button
+        variant={s.dark ? "green" : "primary"}
+        enquiry={s.topic}
+        icon="arrow-right-white"
+        className="self-stretch sm:self-start"
+      >
+        {s.cta}
+      </Button>
+    </article>
+  );
+}
+
+export function Services() {
+  return (
+    <section id="services" aria-labelledby="services-title" className="section-y bg-white">
+      <div className="container-page flex flex-col gap-10 lg:gap-14">
+        <SectionHeader
+          id="services-title"
+          eyebrow="What we do"
+          title="Two specialties. Zero distractions."
+          subtitle="This dedicated help desk handles Microsoft 365 and antivirus support — so every call reaches a specialist who has solved your exact problem before."
+        />
+        <div className="grid gap-6 lg:grid-cols-2">
+          {services.map((s) => (
+            <ServiceCard key={s.id} s={s} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

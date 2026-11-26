@@ -1,0 +1,36 @@
+import { Icon } from "@/components/ui/Icon";
+
+const products = [
+  { icon: "mail-blue", label: "Outlook" },
+  { icon: "product-teams", label: "Teams" },
+  { icon: "product-onedrive", label: "OneDrive" },
+  { icon: "product-sharepoint", label: "SharePoint" },
+  { icon: "product-excel", label: "Excel" },
+  { icon: "product-word", label: "Word & PowerPoint" },
+  { icon: "product-exchange", label: "Exchange Online" },
+  { icon: "product-defender", label: "Microsoft Defender" },
+  { icon: "product-antivirus", label: "All major antivirus brands" },
+];
+
+export function SupportedProducts() {
+  return (
+    <section aria-labelledby="products-title" className="border-b border-line bg-subtle py-10">
+      <div className="container-page flex flex-col items-center gap-5">
+        <p id="products-title" className="text-center text-sm leading-5 font-semibold text-body">
+          Specialist support for the Microsoft 365 apps and security tools your day depends on
+        </p>
+        <ul className="flex max-w-[1040px] flex-wrap justify-center gap-2.5 sm:gap-3">
+          {products.map((p) => (
+            <li
+              key={p.label}
+              className="flex items-center gap-2 rounded-full border border-line bg-white py-2.5 pr-[18px] pl-4 text-sm leading-5 font-semibold text-heading"
+            >
+              <Icon name={p.icon} size={18} />
+              {p.label}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
