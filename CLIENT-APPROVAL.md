@@ -3,14 +3,15 @@
 Please review the page and confirm, change or remove each item below.
 
 Business details, the four policy links, “No fix, no pay (terms apply)”, “Request a free quote”, support hours,
-services, remote-support wording and the FAQ match itgeek.com.au (checked 26 Nov 2026). **Pricing needs confirmation.**
+services, remote-support wording and the FAQ match itgeek.com.au (checked 26 Nov 2026). The A$99 headline price is
+approved; its billing details are still to be confirmed.
 
 ---
 
-## 1. Pricing — Pending
+## 1. Pricing — A$99 approved, billing details to confirm
 
-All three cards show **A$99**. The billing terms are not shown until you confirm them. Each card says
-“AUD · Contact us to confirm billing details”. Please confirm for each card:
+All three cards show **A$99** (approved headline price, 26 Nov 2026). The billing terms are not shown until you confirm
+them. Each card says “AUD · Contact us to confirm billing details”. To show billing terms on the cards, confirm for each card:
 
 | Card | Price shown | Billing frequency? | GST inc./excl.? | Extra fees (call-out, parts, travel)? |
 | --- | --- | --- | --- | --- |

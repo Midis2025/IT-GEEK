@@ -281,8 +281,9 @@ next.config.ts          security headers + launch guard
 
 Tracked in `lib/site.ts → launchChecks`; CI/hosting builds stay blocked until every item is verified.
 
-**Pricing (pending)** — all three cards show A$99. Billing frequency, GST treatment and extra fees await client
-confirmation (`launchChecks → pricing`, see `CLIENT-APPROVAL.md`); CI/hosting builds are blocked until then.
+**Pricing** — A$99 on all three cards is client-approved (`launchChecks → pricing`). Billing frequency, GST
+treatment and extra fees are still unconfirmed and are not shown; add a new unverified launch check if they are added
+to the cards (see `CLIENT-APPROVAL.md`).
 
 **Content** — service coverage and remote-support wording were re-verified against itgeek.com.au.
 

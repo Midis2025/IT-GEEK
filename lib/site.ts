@@ -149,13 +149,14 @@ export const launchChecks: readonly LaunchCheck[] = [
     where: "NEXT_PUBLIC_SITE_URL",
   },
 
-  // ── Awaiting client confirmation ──
+  // ── Approved by the client (26 Nov 2026) ──
   {
     id: "pricing",
-    verified: false,
-    item: "A$99 headline price on all three cards (Online support, Smart Care annual, Onsite support) — confirm the billing frequency for each (one-time, hourly, monthly or annual), GST treatment (inc./excl.) and any extra fees (e.g. call-out, parts, travel), then add them to the cards",
+    verified: true,
+    item: "A$99 headline campaign price on all three cards (Online support, Smart Care annual, Onsite support), shown with the neutral note “AUD · Contact us to confirm billing details” — no billing frequency, GST treatment or extra fees are displayed",
     where: "components/sections/Pricing.tsx, lib/enquiry.ts (topics), app/page.tsx (priceRange)",
-    note: "A$99 is not shown on the published itgeek.com.au Plans & Pricing page (online/onsite from A$70/hour, annual A$299/A$499/A$699, excl. GST); a hidden table there lists “one time fix $99” and onsite “$99 per hour”. The official FAQ also says “Plans start from AUD 49.99”",
+    source: "Explicit client instruction (26 Nov 2026): A$99 is the approved headline price for all three cards",
+    note: "Still unconfirmed and therefore NOT shown on the page: billing frequency, GST treatment and any extra fees. If any of these are added to the cards, add a new launch check with verified: false until confirmed. A$99 differs from the published itgeek.com.au Plans & Pricing page (from A$70/hour; annual A$299/A$499/A$699)",
   },
 
   // ── Re-verified against itgeek.com.au (26 Nov 2026); unsupported campaign claims removed ──
