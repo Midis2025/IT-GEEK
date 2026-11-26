@@ -156,7 +156,7 @@ the official website on 26 Nov 2026.
 | Business / legal name ✓ | `name`, `legalName` | ITGeek / IT Geek Pty Ltd — itgeek.com.au legal pages |
 | Legal pages ✓ | `legal` (footer links) | Privacy, Terms and conditions, Support, Refund and cancellation — on itgeek.com.au |
 | Social profiles ✓ | `social` (structured data `sameAs`) | Facebook, Instagram, LinkedIn, X — itgeek.com.au footer |
-| Logo | `logo` → `public/brand/itgeek-logo.png` | Official logo from itgeek.com.au, white background removed (source JPEG kept as `itgeek-logo.jpeg`) |
+| Logo | `logo` → `public/brand/itgeek-logo.png` | Official logo supplied by the client — transparent, dark-background version (original white-background JPEG kept as `itgeek-logo.jpeg`) |
 | Favicon | `app/icon.png`, `app/apple-icon.png` | Official site icon from itgeek.com.au |
 | SEO title & description | `title`, `description` | — |
 | Production domain | `NEXT_PUBLIC_SITE_URL` | Not decided — see launch requirements |

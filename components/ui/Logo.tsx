@@ -10,9 +10,9 @@ type LogoProps = {
 };
 
 /**
- * Official ITGeek logo (public/brand/itgeek-logo.png, 850×350, transparent background).
- * Created from the official itgeek.com.au JPEG (kept as public/brand/itgeek-logo.jpeg) by removing only the white
- * background; artwork, colours and proportions are unchanged.
+ * Official ITGeek logo (public/brand/itgeek-logo.png, 850×350, transparent background), supplied by the client:
+ * dark-background version with a white web address. The original white-background JPEG from itgeek.com.au is kept
+ * as public/brand/itgeek-logo.jpeg for reference.
  */
 export function Logo({ className = "", variant = "header", preload = false }: LogoProps) {
   const height = variant === "header" ? "h-11 lg:h-[52px]" : "h-12";
