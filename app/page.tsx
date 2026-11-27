@@ -1,4 +1,5 @@
 import { EnquiryDialog } from "@/components/EnquiryDialog";
+import { SupportBookingPopup } from "@/components/SupportBookingPopup";
 import { CommonIssues } from "@/components/sections/CommonIssues";
 import { Coverage } from "@/components/sections/Coverage";
 import { Faq } from "@/components/sections/Faq";
@@ -95,6 +96,7 @@ export default function Home() {
       </main>
       <Footer />
       <EnquiryDialog />
+      <SupportBookingPopup />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }}

@@ -13,6 +13,7 @@ import {
 } from "@/lib/enquiry";
 import { createIdempotencyKey, submitEnquiry } from "@/lib/api/enquiries";
 import { privacyPolicyUrl, site, withBasePath } from "@/lib/site";
+import { markEnquirySubmitted } from "@/lib/supportPopup";
 
 type Status =
   | { kind: "idle" }
@@ -127,6 +128,7 @@ export function EnquiryDialog() {
 
     if (result.ok) {
       attempt.current = null;
+      markEnquirySubmitted(); // also stops the Support Booking popup for this session
       setStatus({ kind: "success", enquiryId: result.enquiryId });
       return;
     }

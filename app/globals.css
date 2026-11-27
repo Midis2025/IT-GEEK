@@ -411,6 +411,44 @@
   }
 }
 
+/* ── Support Booking popup ────────────────────────────────────────────────────────────────────
+   Fades and rises in; fades out while data-closing is set (the component closes the dialog afterwards).
+   The backdrop is a light navy tint with a slight blur, so the page stays recognisable behind it. */
+.support-popup::backdrop {
+  background: rgb(7 19 48 / 0.45);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+}
+.support-popup[open] {
+  animation: dialog-in 240ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.support-popup[open]::backdrop {
+  animation: popup-fade-in 240ms ease-out;
+}
+.support-popup[data-closing] {
+  animation: popup-out 200ms ease-in forwards;
+}
+.support-popup[data-closing]::backdrop {
+  animation: popup-fade-out 200ms ease-in forwards;
+}
+
+@keyframes popup-out {
+  to {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+}
+@keyframes popup-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes popup-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
 /* ── Scroll reveal ────────────────────────────────────────────────────────────────────────────
    Content is only hidden while html.js-reveal is set (by an inline script, removed again if the
    reveal controller fails to start), so it stays visible without JavaScript. Elements fade in and
