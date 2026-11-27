@@ -21,35 +21,36 @@ const steps = [
 
 export function HowItWorks() {
   return (
-    <section id="how-it-works" aria-labelledby="how-title" className="section-y bg-ambient">
-      <div className="container-page flex flex-col gap-10 lg:gap-14">
+    <section id="how-it-works" aria-labelledby="how-title" className="section-y bg-white">
+      <div className="container-page flex flex-col gap-12 lg:gap-16">
         <SectionHeader
           id="how-title"
+          align="split"
+          index="03"
           eyebrow="How it works"
           title="Fixed in three simple steps"
           subtitle="No waiting around for a technician to drive over. Just convenient, secure remote help from a specialist."
         />
-        <ol data-reveal-group className="grid gap-4 sm:gap-6 md:grid-cols-3">
+        <ol data-reveal-group className="grid gap-12 lg:grid-cols-3 lg:gap-12">
           {steps.map((step, i) => (
-            <li
-              key={step.title}
-              className={`glass-light lift relative flex flex-col gap-5 rounded-[20px] p-6 sm:p-8 ${
-                // Discreet dashed connector across the gap to the next step (desktop/tablet row layout only).
-                i < steps.length - 1
-                  ? "md:after:absolute md:after:top-[60px] md:after:left-full md:after:w-6 md:after:border-t-2 md:after:border-dashed md:after:border-brand/30"
-                  : ""
-              }`}
-            >
-              <div className="flex items-center justify-between">
-                <span className="flex size-14 items-center justify-center rounded-[14px] bg-linear-to-br from-brand to-brand-hover shadow-[0_10px_24px_-10px_rgb(11_99_229/0.6)] ring-1 ring-white/20 ring-inset">
-                  <Icon name={step.icon} size={26} />
+            <li key={step.title} className="flex flex-col">
+              {/* Step marker and a hairline running on to the next step. */}
+              <div className="flex items-center gap-4" aria-hidden="true">
+                <span className="text-index flex h-8 shrink-0 items-center rounded-full border border-brand/25 bg-brand-soft px-3 text-brand">
+                  {String(i + 1).padStart(2, "0")}
                 </span>
-                <span className="text-eyebrow rounded-full bg-brand-soft px-3 py-1.5 text-brand ring-1 ring-brand/10 ring-inset">
-                  Step {String(i + 1).padStart(2, "0")}
-                </span>
+                <span
+                  className={`h-px flex-1 ${i < steps.length - 1 ? "bg-linear-to-r from-brand/35 to-line" : "bg-linear-to-r from-line to-transparent"}`}
+                />
               </div>
-              <h3 className="text-h4 text-heading">{step.title}</h3>
-              <p className="text-base leading-[26px] text-body">{step.text}</p>
+              <span className="mt-8 flex size-12 items-center justify-center rounded-xl bg-brand ring-1 ring-white/15 ring-inset">
+                <Icon name={step.icon} size={24} />
+              </span>
+              <h3 className="text-h4 mt-6 text-heading">
+                <span className="sr-only">Step {i + 1}: </span>
+                {step.title}
+              </h3>
+              <p className="mt-3 max-w-[380px] text-base leading-[26px] text-body">{step.text}</p>
             </li>
           ))}
         </ol>

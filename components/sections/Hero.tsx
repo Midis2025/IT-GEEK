@@ -11,9 +11,9 @@ const tickets = [
 
 function SupportDeskVisual() {
   return (
-    <div className="relative mx-auto w-full max-w-[496px] pt-10 pb-[98px]" aria-hidden="true">
+    <div className="relative mx-auto w-full max-w-[520px] pt-10 pb-[98px]" aria-hidden="true">
       {/* Support desk card */}
-      <div className="glass-blur rounded-[20px] border border-white/70 bg-white/[0.92] p-4 shadow-floating ring-1 ring-brand/10 sm:ml-14 sm:p-6 lg:ml-0 lg:p-5 xl:ml-14 xl:p-6">
+      <div className="glass-blur rounded-[20px] border border-white/70 bg-white/[0.92] p-4 shadow-[0_24px_48px_-20px_rgb(3_8_26/0.5)] ring-1 ring-brand/10 sm:ml-14 sm:p-6 lg:ml-0 lg:p-5 xl:ml-14 xl:p-6">
         <div className="flex items-center justify-between gap-3 pb-1">
           <div>
             <p className="text-h5 text-heading">Today’s fixes</p>
@@ -50,7 +50,7 @@ function SupportDeskVisual() {
       </div>
 
       {/* Response pill */}
-      <div className="float-slow absolute top-0 right-0 flex items-center gap-2 rounded-full border border-white/70 bg-white/[0.97] py-2.5 pr-4 pl-3 shadow-floating">
+      <div className="float-slow absolute top-0 right-0 flex items-center gap-2 rounded-full border border-white/70 bg-white/[0.97] py-2.5 pr-4 pl-3 shadow-[0_24px_48px_-20px_rgb(3_8_26/0.5)]">
         <span className="flex size-7 items-center justify-center rounded-full bg-brand">
           <Icon name="pill-clock" size={16} />
         </span>
@@ -58,7 +58,7 @@ function SupportDeskVisual() {
       </div>
 
       {/* Threat scan card */}
-      <div className="float-slow-delayed absolute bottom-2.5 left-0 flex w-[300px] max-w-[calc(100%-1.5rem)] flex-col gap-3.5 rounded-2xl border border-white/70 bg-white/[0.97] p-[18px] shadow-floating">
+      <div className="float-slow-delayed absolute bottom-2.5 left-0 flex w-[300px] max-w-[calc(100%-1.5rem)] flex-col gap-3.5 rounded-2xl border border-white/70 bg-white/[0.97] p-[18px] shadow-[0_24px_48px_-20px_rgb(3_8_26/0.5)]">
         <div className="flex items-center gap-3">
           <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-green-soft">
             <Icon name="scan-shield" size={24} />
@@ -84,7 +84,7 @@ export function Hero() {
         aria-hidden="true"
         width={1040}
         height={1040}
-        className="pointer-events-none absolute -top-[420px] -right-[220px] -z-10 max-w-none"
+        className="pointer-events-none absolute -top-[420px] -right-[220px] -z-10 max-w-none opacity-80"
       />
       <img
         src={withBasePath("/figma/glow-left.svg")}
@@ -92,18 +92,18 @@ export function Hero() {
         aria-hidden="true"
         width={880}
         height={880}
-        className="pointer-events-none absolute top-[180px] -left-[360px] -z-10 max-w-none"
+        className="pointer-events-none absolute top-[180px] -left-[360px] -z-10 max-w-none opacity-60"
       />
       {/* Faint technology grid and a slowly drifting ambient light — kept behind the dashboard, away from the copy. */}
       <div aria-hidden="true" className="tech-grid pointer-events-none absolute inset-0 -z-10" />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute top-[-4%] right-[-6%] -z-10 size-[720px] bg-[radial-gradient(closest-side,rgb(11_99_229/0.24),transparent)] will-change-transform motion-safe:animate-[ambient-drift_18s_ease-in-out_infinite]"
+        className="pointer-events-none absolute top-[-4%] right-[-6%] -z-10 size-[720px] bg-[radial-gradient(closest-side,rgb(11_99_229/0.18),transparent)] will-change-transform motion-safe:animate-[ambient-drift_18s_ease-in-out_infinite]"
       />
 
-      <div className="container-page grid items-center gap-12 pt-10 pb-14 sm:pt-16 md:gap-14 md:pb-20 lg:grid-cols-[minmax(0,1fr)_420px] lg:justify-between lg:gap-10 lg:pt-20 lg:pb-24 xl:grid-cols-[minmax(0,640px)_496px] xl:pt-24 xl:pb-[120px]">
-        <div className="flex flex-col items-start gap-6 sm:gap-7">
-          <p className="inline-flex max-w-full items-center gap-2.5 rounded-2xl border sm:rounded-full border-white/12 bg-white/6 py-1.5 pr-4 pl-1.5 text-sm leading-5 font-semibold text-white">
+      <div className="container-page grid items-center gap-12 pt-10 pb-14 sm:pt-16 md:gap-14 md:pb-20 lg:grid-cols-[minmax(0,1fr)_420px] lg:justify-between lg:gap-12 lg:pt-20 lg:pb-24 xl:grid-cols-[minmax(0,680px)_520px] xl:pt-24 xl:pb-28">
+        <div className="flex flex-col items-start">
+          <p className="inline-flex max-w-full items-center gap-2.5 rounded-2xl border border-white/12 bg-white/[0.04] py-1.5 pr-4 pl-1.5 text-sm leading-5 font-medium text-white sm:rounded-full">
             <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-green-bright/16 px-2.5 py-1 text-green-bright">
               <Icon name="hero-tag-shield" size={14} />
               Specialists
@@ -111,18 +111,18 @@ export function Hero() {
             <span className="min-w-0">Microsoft 365 support &amp; antivirus protection</span>
           </p>
 
-          <h1 id="hero-title" className="text-h1 max-w-[640px] text-white">
+          <h1 id="hero-title" className="text-h1 mt-7 max-w-[660px] text-white">
             Microsoft 365 &amp; antivirus experts <br className="hidden lg:block" />
             who <span className="text-green-bright">fix it fast.</span>
           </h1>
 
-          <p className="text-lead max-w-[600px] text-on-dark-muted">
+          <p className="text-lead mt-6 max-w-[580px] text-on-dark-muted">
             This ITGeek help desk is dedicated to two things: Microsoft 365 and antivirus protection. From Outlook,
             OneDrive and Office headaches to malware and online threats, our specialists sort it out remotely — no
             waiting for a home visit.
           </p>
 
-          <div className="flex w-full flex-col gap-4 sm:w-auto sm:flex-row">
+          <div className="mt-9 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
             <Button enquiry="Microsoft 365 help" icon="arrow-right-white">
               Get help now
             </Button>
@@ -131,7 +131,7 @@ export function Hero() {
             </Button>
           </div>
 
-          <ul className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-2 text-sm leading-[22px] text-on-dark-muted">
+          <ul className="mt-10 flex w-full flex-wrap items-center gap-x-7 gap-y-3 border-t border-white/10 pt-6 text-sm leading-[22px] text-on-dark-muted">
             <li className="flex items-center gap-2">
               <Icon name="hero-tag-shield" size={18} />
               Secure remote help

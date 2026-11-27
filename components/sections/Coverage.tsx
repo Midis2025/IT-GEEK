@@ -234,19 +234,20 @@ function RemoteIcon({ className = "" }: { className?: string }) {
 
 export function Coverage() {
   return (
-    <section id="coverage" aria-labelledby="coverage-title" className="section-y bg-ambient-subtle relative isolate overflow-hidden">
-      <div className="container-page grid items-center gap-10 lg:gap-14 xl:grid-cols-[minmax(0,520px)_minmax(0,620px)] xl:justify-between xl:gap-16">
+    <section id="coverage" aria-labelledby="coverage-title" className="section-y relative isolate overflow-hidden bg-subtle">
+      <div className="container-page grid items-center gap-10 lg:gap-14 xl:grid-cols-[minmax(0,560px)_minmax(0,680px)] xl:justify-between xl:gap-20">
         <div className="flex flex-col gap-8">
           <SectionHeader
             id="coverage-title"
             align="left"
+            index="05"
             eyebrow="Our service coverage"
-            title="IT Support That Reaches All Across Australia."
+            title="IT support that reaches all across Australia."
             subtitle="Wherever you are in Australia, expert IT help is just a call or click away. ITGeek provides secure remote Microsoft 365 support and antivirus assistance to homes and businesses nationwide."
           />
 
           <ul data-reveal-group className="grid gap-3 sm:grid-cols-2 xl:grid-cols-1">
-            <li className="glass-light flex items-start gap-4 rounded-[20px] p-5">
+            <li className="glass-light flex items-start gap-4 rounded-2xl p-5">
               <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-green-soft text-green-ink ring-1 ring-green/15 ring-inset">
                 <RemoteIcon />
               </span>
@@ -263,7 +264,7 @@ export function Coverage() {
                 </p>
               </div>
             </li>
-            <li className="glass-light flex items-start gap-4 rounded-[20px] p-5">
+            <li className="glass-light flex items-start gap-4 rounded-2xl p-5">
               <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-brand-soft text-brand ring-1 ring-brand/10 ring-inset">
                 <PinIcon />
               </span>
@@ -288,12 +289,12 @@ export function Coverage() {
               <span className="text-brand">Nationwide remote assistance.</span>
             </p>
             <Button enquiry="Microsoft 365 help" icon="arrow-right-white" className="w-full sm:w-auto">
-              Get Help From Anywhere
+              Get help from anywhere
             </Button>
           </div>
         </div>
 
-        <div data-reveal className="on-dark surface-dark relative overflow-hidden rounded-[28px] p-4 sm:p-6 lg:p-7">
+        <div data-reveal className="on-dark surface-dark relative overflow-hidden rounded-3xl p-4 sm:p-6 lg:p-8">
           <div aria-hidden="true" className="tech-grid pointer-events-none absolute inset-0" />
 
           <div className="relative flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">

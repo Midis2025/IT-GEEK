@@ -78,7 +78,7 @@ function PlanCard({ plan }: { plan: Plan }) {
   const dark = !!plan.featured;
   return (
     <li
-      className={`flex flex-col gap-6 rounded-3xl p-7 sm:p-9 lg:row-span-6 lg:grid lg:grid-rows-subgrid lg:p-7 xl:p-9 ${
+      className={`flex flex-col gap-6 rounded-3xl p-7 sm:p-9 lg:row-span-6 lg:grid lg:grid-rows-subgrid lg:p-8 xl:p-10 ${
         dark ? "on-dark surface-dark lift-dark" : "glass-light lift"
       }`}
     >
@@ -86,7 +86,7 @@ function PlanCard({ plan }: { plan: Plan }) {
         <span
           className={`flex size-12 items-center justify-center rounded-xl ring-1 ring-inset ${
             dark
-              ? "bg-linear-to-br from-brand to-brand-hover shadow-[0_10px_24px_-10px_rgb(11_99_229/0.7)] ring-white/20"
+              ? "bg-brand ring-white/15"
               : "bg-brand-soft ring-brand/10"
           }`}
         >
@@ -138,15 +138,17 @@ function PlanCard({ plan }: { plan: Plan }) {
 
 export function Pricing() {
   return (
-    <section id="pricing" aria-labelledby="pricing-title" className="section-y bg-ambient">
-      <div className="container-page flex flex-col items-center gap-10 lg:gap-14">
+    <section id="pricing" aria-labelledby="pricing-title" className="section-y bg-white">
+      <div className="container-page flex flex-col gap-10 lg:gap-14">
         <SectionHeader
           id="pricing-title"
+          align="split"
+          index="06"
           eyebrow="Pricing"
           title="Simple, upfront pricing"
           subtitle="Online, annual and onsite support options. Contact us to confirm billing details for your situation."
         />
-        <ul data-reveal-group className="grid w-full max-w-[480px] items-stretch gap-6 lg:max-w-none lg:grid-cols-3">
+        <ul data-reveal-group className="grid w-full max-w-[480px] items-stretch gap-6 self-center lg:max-w-none xl:gap-8 lg:grid-cols-3">
           {plans.map((plan) => (
             <PlanCard key={plan.name} plan={plan} />
           ))}

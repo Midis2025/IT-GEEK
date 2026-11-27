@@ -18,17 +18,16 @@ export function Faq() {
     });
 
   return (
-    <section id="faq" aria-labelledby="faq-title" className="section-y bg-subtle">
-      <div className="container-page flex flex-col gap-10 lg:gap-12">
-        <SectionHeader id="faq-title" eyebrow="FAQ" title="Questions, answered" />
-        <div data-reveal-group className="mx-auto flex w-full max-w-[860px] flex-col gap-4">
+    <section id="faq" aria-labelledby="faq-title" className="section-y border-t border-line bg-subtle">
+      <div className="container-page grid gap-10 lg:grid-cols-[minmax(0,380px)_minmax(0,1fr)] lg:gap-16 xl:grid-cols-[minmax(0,440px)_minmax(0,820px)] xl:justify-between">
+        <div className="lg:sticky lg:top-32 lg:self-start">
+          <SectionHeader id="faq-title" align="left" index="07" eyebrow="FAQ" title="Questions, answered" />
+        </div>
+        <div data-reveal-group className="flex w-full flex-col border-t border-line">
           {faqs.map((item, i) => {
             const isOpen = open.has(i);
             return (
-              <div
-                key={item.q}
-                className={`glass-light rounded-2xl ${isOpen ? "border-brand/35" : "hover:border-brand/25"}`}
-              >
+              <div key={item.q} className="border-b border-line">
                 <h3>
                   <button
                     type="button"
@@ -36,11 +35,13 @@ export function Faq() {
                     aria-expanded={isOpen}
                     aria-controls={`faq-a-${i}`}
                     onClick={() => toggle(i)}
-                    className="group flex w-full items-center gap-6 rounded-2xl px-5 py-5 text-left sm:px-7 sm:py-6"
+                    className="group flex w-full items-center gap-6 rounded-lg py-5 text-left sm:py-6"
                   >
-                    <span className="text-h5 flex-1 text-heading transition-colors duration-200 group-hover:text-brand">{item.q}</span>
+                    <span className={`text-h5 flex-1 transition-colors duration-200 group-hover:text-brand ${isOpen ? "text-brand" : "text-heading"}`}>
+                      {item.q}
+                    </span>
                     <span
-                      className={`relative flex size-8 shrink-0 items-center justify-center rounded-full transition-colors duration-300 ${isOpen ? "bg-brand" : "bg-brand-soft group-hover:bg-brand/15"}`}
+                      className={`relative flex size-8 shrink-0 items-center justify-center rounded-full border transition-colors duration-300 ${isOpen ? "border-brand bg-brand" : "border-line bg-white group-hover:border-brand/40"}`}
                     >
                       {/* Plus turns into minus: cross-fade with a quarter turn. */}
                       <Icon
@@ -60,10 +61,10 @@ export function Faq() {
                   id={`faq-a-${i}`}
                   role="region"
                   aria-labelledby={`faq-q-${i}`}
-                  className={`grid transition-[grid-template-rows,margin] duration-300 ease-out ${isOpen ? "-mt-2 grid-rows-[1fr] sm:-mt-3" : "grid-rows-[0fr]"}`}
+                  className={`grid transition-[grid-template-rows] duration-300 ease-out ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
                 >
                   <div className={`overflow-hidden transition-opacity duration-300 ${isOpen ? "opacity-100" : "opacity-0"}`} inert={!isOpen}>
-                    <p className="px-5 pb-6 text-base leading-[26px] text-body sm:px-7">{item.a}</p>
+                    <p className="max-w-[720px] pr-12 pb-6 text-base leading-[26px] text-body">{item.a}</p>
                   </div>
                 </div>
               </div>

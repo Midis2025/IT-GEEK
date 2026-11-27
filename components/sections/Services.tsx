@@ -65,25 +65,19 @@ function ServiceCard({ s }: { s: Service }) {
     <article
       id={s.id}
       aria-labelledby={`${s.id}-title`}
-      className={`anchor-target flex flex-col gap-7 rounded-[28px] p-6 sm:p-9 lg:row-span-5 lg:grid lg:grid-rows-subgrid lg:p-11 ${
+      className={`anchor-target flex flex-col gap-7 rounded-3xl p-6 sm:p-9 lg:row-span-5 lg:grid lg:grid-rows-subgrid lg:p-10 xl:p-12 ${
         s.dark ? "on-dark surface-dark lift-dark" : "glass-light lift"
       }`}
     >
       <div className="flex items-center justify-between gap-4">
         <span
-          className={`flex size-16 items-center justify-center rounded-2xl ring-1 ring-inset ring-white/20 ${
-            s.dark
-              ? "bg-linear-to-br from-green-bright to-green-ink shadow-[0_10px_24px_-10px_rgb(34_197_94/0.6)]"
-              : "bg-linear-to-br from-brand to-brand-hover shadow-[0_10px_24px_-10px_rgb(11_99_229/0.6)]"
+          className={`flex size-14 items-center justify-center rounded-2xl ring-1 ring-inset ring-white/15 ${
+            s.dark ? "bg-green-ink" : "bg-brand"
           }`}
         >
-          <Icon name={s.icon} size={32} />
+          <Icon name={s.icon} size={28} />
         </span>
-        <span
-          className={`text-eyebrow rounded-full px-3.5 py-1.5 ${s.dark ? "bg-green-bright/16 text-green-bright" : "bg-brand-soft text-brand"}`}
-        >
-          {s.chip}
-        </span>
+        <span className={`text-eyebrow eyebrow ${s.dark ? "text-green-bright" : "text-brand"}`}>{s.chip}</span>
       </div>
 
       <div className="flex flex-col gap-2.5">
@@ -115,13 +109,16 @@ function ServiceCard({ s }: { s: Service }) {
 
 export function Services() {
   return (
-    <section id="services" aria-labelledby="services-title" className="section-y bg-ambient">
+    <section id="services" aria-labelledby="services-title" className="section-y relative isolate bg-white">
+      <div aria-hidden="true" className="tech-grid-light pointer-events-none absolute inset-x-0 top-0 -z-10 h-[520px]" />
       <div className="container-page flex flex-col gap-10 lg:gap-14">
         <SectionHeader
           id="services-title"
+          align="split"
+          index="01"
           eyebrow="What we do"
-          title="Two specialties. Zero distractions."
-          subtitle="This dedicated help desk handles Microsoft 365 and antivirus support — so you reach professional technicians focused on these areas."
+          title="Two areas of IT support, handled by specialists."
+          subtitle="This dedicated help desk looks after Microsoft 365 and antivirus support, so you speak with professional technicians who focus on exactly these areas."
         />
         <div data-reveal-group className="grid gap-6 lg:grid-cols-2">
           {services.map((s) => (

@@ -5,7 +5,7 @@ export function FinalCta() {
   return (
     <section id="contact" aria-labelledby="cta-title" className="bg-subtle pb-16 md:pb-20 lg:pb-24">
       <div className="container-page">
-        <div data-reveal className="on-dark relative isolate flex flex-col gap-8 overflow-hidden rounded-[24px] bg-[linear-gradient(125deg,var(--color-navy-900)_0%,var(--color-navy-800)_45%,var(--color-brand)_135%)] p-7 shadow-floating ring-1 ring-white/10 ring-inset sm:rounded-[32px] sm:p-12 lg:flex-row lg:items-center lg:justify-between lg:gap-14 lg:p-[72px]">
+        <div data-reveal className="on-dark relative isolate flex flex-col gap-8 overflow-hidden rounded-3xl bg-[linear-gradient(125deg,var(--color-navy-900)_0%,var(--color-navy-800)_50%,var(--color-brand)_150%)] p-7 shadow-[0_24px_48px_-28px_rgb(3_8_26/0.5)] ring-1 ring-white/10 ring-inset sm:p-12 lg:flex-row lg:items-center lg:justify-between lg:gap-16 lg:px-16 lg:py-16 xl:px-20">
           <img
             src={withBasePath("/figma/cta-ring-left.svg")}
             alt=""
@@ -29,7 +29,7 @@ export function FinalCta() {
             className="pointer-events-none absolute -right-48 -bottom-56 -z-10 size-[640px] bg-[radial-gradient(closest-side,rgb(11_99_229/0.4),transparent)]"
           />
 
-          <div className="flex max-w-[828px] flex-col gap-4 text-white">
+          <div className="flex max-w-[720px] flex-col gap-4 text-white">
             <h2 id="cta-title" className="text-h2">
               Stuck right now? Let’s get it sorted.
             </h2>
