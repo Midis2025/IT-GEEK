@@ -1,12 +1,13 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { normaliseEnquiry, validateEnquiry } from "@/lib/enquiry";
+import { createIdempotencyKey, submitEnquiry } from "@/lib/api/enquiries";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const MAX_BODY_BYTES = 10_000;
 const MIN_FILL_MS = 2_500; // humans take longer than this to fill the form
-const RATE_LIMIT = { max: 5, windowMs: 10 * 60 * 1000 };
+const RATE_LIMIT = { max: 20, windowMs: 10 * 60 * 1000 };
 
 /*
  * Rate limiting: best-effort and IN-MEMORY, so it is per server instance and resets on restart/redeploy.
@@ -81,45 +82,33 @@ export async function POST(req: NextRequest) {
     return json(422, { ok: false, message: "Please check the highlighted fields.", errors });
   }
 
-  // Never simulate success: without a configured delivery target the lead is rejected in every environment.
-  const webhook = process.env.ENQUIRY_WEBHOOK_URL;
-  if (!webhook) {
-    console.error("[enquiry] ENQUIRY_WEBHOOK_URL is not configured; enquiry was NOT delivered.");
-    return json(503, { ok: false, message: "Online enquiries are temporarily unavailable." });
-  }
-  let target: URL;
-  try {
-    target = new URL(webhook);
-  } catch {
-    console.error("[enquiry] ENQUIRY_WEBHOOK_URL is not a valid URL; enquiry was NOT delivered.");
-    return json(503, { ok: false, message: "Online enquiries are temporarily unavailable." });
-  }
-  const loopback = target.hostname === "localhost" || target.hostname === "127.0.0.1";
-  if (process.env.NODE_ENV === "production" && target.protocol !== "https:" && !loopback) {
-    console.error("[enquiry] ENQUIRY_WEBHOOK_URL must use https:// in production; enquiry was NOT delivered.");
-    return json(503, { ok: false, message: "Online enquiries are temporarily unavailable." });
+  // Forward enquiry to the central CRM API integration
+  const idempotencyKey =
+    typeof body.idempotencyKey === "string" && body.idempotencyKey.length > 0
+      ? body.idempotencyKey
+      : createIdempotencyKey();
+
+  const result = await submitEnquiry(
+    data,
+    {
+      idempotencyKey,
+      honeypot: typeof body.website === "string" ? body.website : "",
+      startedAt,
+    },
+    { directOnly: true },
+  );
+
+  if (result.ok) {
+    return json(200, { ok: true, enquiryId: result.enquiryId });
   }
 
-  const lead = { ...data, source: "itgeek-landing", submittedAt: new Date().toISOString() };
-
-  try {
-    const res = await fetch(webhook, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        ...(process.env.ENQUIRY_WEBHOOK_SECRET ? { "X-Webhook-Secret": process.env.ENQUIRY_WEBHOOK_SECRET } : {}),
-      },
-      body: JSON.stringify(lead),
-      signal: AbortSignal.timeout(8_000),
-      redirect: "error",
-    });
-    if (!res.ok) throw new Error(`webhook responded with HTTP ${res.status}`);
-  } catch (err) {
-    // Log only the failure reason — never the lead (personal information) or the webhook URL (may embed a secret).
-    const reason = err instanceof Error ? `${err.name}: ${err.message}` : "unknown error";
-    console.error(`[enquiry] delivery failed (${reason}); enquiry was NOT delivered.`);
-    return json(502, { ok: false, message: "We couldn’t send your enquiry just now." });
+  if (result.kind === "validation") {
+    return json(422, { ok: false, message: result.message, errors: result.fieldErrors });
   }
 
-  return json(200, { ok: true });
+  if (result.kind === "rate_limited") {
+    return json(429, { ok: false, message: result.message });
+  }
+
+  return json(502, { ok: false, message: result.message });
 }
