@@ -301,6 +301,81 @@
   }
 }
 
+/* ── Australia coverage map ──────────────────────────────────────────────────────────────────
+   City labels are hidden on small phones (the city list under the map carries them) so they never overlap.
+   Pulses and route flow are decorative and switched off for reduced motion. */
+.coverage-label {
+  display: none;
+  font-family: var(--font-sans);
+  font-size: 21px;
+  font-weight: 600;
+  fill: #fff;
+  paint-order: stroke;
+  stroke: var(--color-navy-900);
+  stroke-width: 5px;
+  stroke-linejoin: round;
+}
+@media (min-width: 40rem) {
+  .coverage-label {
+    display: inline;
+  }
+}
+
+.coverage-pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  opacity: 0;
+  animation: coverage-pulse 3.6s cubic-bezier(0.22, 0.61, 0.36, 1) infinite;
+}
+
+.coverage-route {
+  animation: coverage-flow 1.6s linear infinite;
+}
+
+.coverage-ping {
+  animation: coverage-ping 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes coverage-pulse {
+  0% {
+    opacity: 0.7;
+    transform: scale(0.8);
+  }
+  70%,
+  100% {
+    opacity: 0;
+    transform: scale(2.6);
+  }
+}
+
+@keyframes coverage-flow {
+  to {
+    stroke-dashoffset: -20;
+  }
+}
+
+@keyframes coverage-ping {
+  0% {
+    opacity: 0.75;
+    transform: scale(1);
+  }
+  75%,
+  100% {
+    opacity: 0;
+    transform: scale(2.4);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .coverage-pulse,
+  .coverage-ping {
+    display: none;
+  }
+  .coverage-route {
+    animation: none;
+  }
+}
+
 /* ── Scroll reveal ────────────────────────────────────────────────────────────────────────────
    Content is only hidden while html.js-reveal is set (by an inline script, removed again if the
    reveal controller fails to start), so it stays visible without JavaScript. Elements fade in and

@@ -1,5 +1,6 @@
 import { EnquiryDialog } from "@/components/EnquiryDialog";
 import { CommonIssues } from "@/components/sections/CommonIssues";
+import { Coverage } from "@/components/sections/Coverage";
 import { Faq } from "@/components/sections/Faq";
 import { FinalCta } from "@/components/sections/FinalCta";
 import { Footer } from "@/components/sections/Footer";
@@ -86,6 +87,7 @@ export default function Home() {
         <CommonIssues />
         <HowItWorks />
         <WhyItGeek />
+        <Coverage />
         <Pricing />
         <Testimonials />
         <Faq />
