@@ -11,9 +11,14 @@ import {
   type EnquiryField,
   type EnquiryInput,
 } from "@/lib/enquiry";
+import { createIdempotencyKey, submitEnquiry } from "@/lib/api/enquiries";
 import { privacyPolicyUrl, site, withBasePath } from "@/lib/site";
 
-type Status = { kind: "idle" } | { kind: "submitting" } | { kind: "success" } | { kind: "error"; message: string };
+type Status =
+  | { kind: "idle" }
+  | { kind: "submitting" }
+  | { kind: "success"; enquiryId?: string }
+  | { kind: "error"; message: string };
 
 const EMPTY: EnquiryInput = { name: "", email: "", phone: "", topic: ENQUIRY_TOPICS[0], message: "" };
 const FIELD_ORDER: EnquiryField[] = ["name", "email", "phone", "topic", "message"];
@@ -26,6 +31,9 @@ export function EnquiryDialog() {
   const formRef = useRef<HTMLFormElement>(null);
   const successRef = useRef<HTMLHeadingElement>(null);
   const startedAt = useRef(0);
+  // One idempotency key per logical submission: reused only while retrying the exact same data.
+  const attempt = useRef<{ key: string; fingerprint: string } | null>(null);
+  const inFlight = useRef(false);
   const uid = useId();
 
   const [values, setValues] = useState<EnquiryInput>(EMPTY);
@@ -90,7 +98,8 @@ export function EnquiryDialog() {
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (status.kind === "submitting") return; // prevent duplicate submissions
+    // Prevent duplicate submissions. The ref blocks clicks that land before React re-renders the disabled button.
+    if (inFlight.current || status.kind === "submitting") return;
 
     const data = normaliseEnquiry(values);
     const errors = validateEnquiry(data);
@@ -104,23 +113,25 @@ export function EnquiryDialog() {
     setStatus({ kind: "submitting" });
     const website = (formRef.current?.elements.namedItem("website") as HTMLInputElement | null)?.value ?? "";
 
-    try {
-      const res = await fetch(withBasePath("/api/enquiry"), {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, website, startedAt: startedAt.current }),
-      });
-      const body = (await res.json().catch(() => ({}))) as { ok?: boolean; message?: string; errors?: EnquiryErrors };
+    const fingerprint = JSON.stringify(data);
+    if (attempt.current?.fingerprint !== fingerprint) attempt.current = { key: createIdempotencyKey(), fingerprint };
 
-      if (res.ok && body.ok) {
-        setStatus({ kind: "success" });
-        return;
-      }
-      if (body.errors) setServerErrors(body.errors);
-      setStatus({ kind: "error", message: body.message ?? "Something went wrong sending your enquiry." });
-    } catch {
-      setStatus({ kind: "error", message: "We couldn’t reach our server — please check your connection." });
+    inFlight.current = true;
+    const result = await submitEnquiry(data, {
+      idempotencyKey: attempt.current.key,
+      honeypot: website,
+      startedAt: startedAt.current,
+    }).finally(() => {
+      inFlight.current = false;
+    });
+
+    if (result.ok) {
+      attempt.current = null;
+      setStatus({ kind: "success", enquiryId: result.enquiryId });
+      return;
     }
+    if (result.fieldErrors) setServerErrors(result.fieldErrors);
+    setStatus({ kind: "error", message: result.message });
   }
 
   const fieldProps = (f: EnquiryField) => {
@@ -189,6 +200,11 @@ export function EnquiryDialog() {
             </h3>
             <p className="text-base leading-[26px]">
               We’ve received your enquiry and will contact you at <strong className="text-heading">{values.email}</strong>.
+              {status.enquiryId && (
+                <>
+                  {" "}Your reference number is <strong className="text-heading">{status.enquiryId}</strong>.
+                </>
+              )}{" "}
               Need help right now? Call us on{" "}
               <a href={site.phoneHref} className="font-semibold whitespace-nowrap text-brand underline underline-offset-4">
                 {site.phoneDisplay}

@@ -60,12 +60,27 @@ Never commit real values (`.env*` is git-ignored).
 | Variable | Required | Purpose |
 | --- | --- | --- |
 | `NEXT_PUBLIC_SITE_URL` | Yes | This landing page's own URL — a dedicated subdomain (`https://support.itgeek.com.au`) or path (`https://itgeek.com.au/microsoft-365-support`). Drives canonical, Open Graph, sitemap, robots, structured data and (for a path) the Next.js `basePath`. **Never** `https://itgeek.com.au` — CI builds fail if it is unset or the corporate root. Unset locally → `http://localhost:3000`. |
-| `ENQUIRY_WEBHOOK_URL` | Yes | Where enquiry-form leads are POSTed. Server-side only; must be `https://` in production. |
-| `ENQUIRY_WEBHOOK_SECRET` | Recommended | Sent as the `X-Webhook-Secret` header so the receiver can reject forged requests. |
+| `NEXT_PUBLIC_CRM_API_BASE_URL` | Recommended | IT Geek CRM base URL (public, not a secret). The form POSTs to `{base}/api/public/enquiries` from the browser. Unset → production builds use `https://it-geek-backend.vercel.app`; the dev server sends nothing and shows an error. |
+| `ENQUIRY_WEBHOOK_URL` | Legacy | Only used by the old `POST /api/enquiry` route, which the form no longer calls. |
+| `ENQUIRY_WEBHOOK_SECRET` | Legacy | As above. |
 | `NEXT_PUBLIC_SHOW_REVIEW_PLACEHOLDER` | No | `true` shows a labelled Reviews layout placeholder on the **dev server only** (never in a build). Leave unset for client review. |
 | `ALLOW_UNVERIFIED_CONTENT` | No | `true` lets a CI/hosting build proceed with unverified content (e.g. a password-protected staging site). Leave unset for production. |
 
-## Enquiry webhook setup
+## Enquiry delivery (CRM)
+
+Every “Get help”/plan CTA opens the single enquiry form (`components/EnquiryDialog.tsx`). It submits through
+`lib/api/enquiries.ts` straight to the CRM's public intake route, `POST {NEXT_PUBLIC_CRM_API_BASE_URL}/api/public/enquiries`
+(no auth, Zod-validated, IP rate-limited, idempotency-keyed). The CRM creates/updates the customer, assigns an
+`enquiryId` (shown to the visitor) and queues the customer + admin emails. `/api/enquiries` is the CRM dashboard's
+authenticated endpoint and must not be used by the website.
+
+- **CORS:** the CRM only answers browsers from origins in its allow-list. Set the backend's `NEXT_PUBLIC_WEBSITE_URL`
+  to this site's production origin, or submissions fail with a connection error.
+- **Topics:** the chosen dropdown option is sent unchanged as `serviceCategory`. `ENQUIRY_TOPICS` (`lib/enquiry.ts`)
+  must match the CRM's `SERVICE_CATEGORIES` (`src/types/constants.ts`) exactly — change both together, CRM first.
+- **Local testing:** pointing a local build at the production CRM creates real records and emails. Use a staging CRM.
+
+### Legacy webhook route (unused by the form)
 
 Every “Get help”/plan CTA opens the enquiry form. Submissions go to `POST /api/enquiry`, which validates them and
 forwards the lead to `ENQUIRY_WEBHOOK_URL` as JSON:

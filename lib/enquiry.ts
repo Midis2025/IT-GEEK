@@ -1,4 +1,7 @@
-/** Shared enquiry validation — used by the dialog (client) and /api/enquiry (server). */
+/**
+ * Shared enquiry validation — used by the dialog and /api/enquiry. Limits are kept within the CRM's public enquiry
+ * schema (IT_GEEK_BACKEND → src/validations/enquiry.validation.ts) so valid form input is never rejected there.
+ */
 
 export const ENQUIRY_TOPICS = [
   "Microsoft 365 help",
@@ -23,7 +26,11 @@ export type EnquiryInput = {
 export type EnquiryField = keyof EnquiryInput;
 export type EnquiryErrors = Partial<Record<EnquiryField, string>>;
 
-export const LIMITS = { name: 80, email: 254, phone: 20, message: 2000 } as const;
+// CRM limits: name 2–100, email ≤ 150, phone 8–20, description 5–5000 characters.
+export const LIMITS = { name: 80, email: 150, phone: 20, message: 2000 } as const;
+
+/** The CRM's phone rule; AU numbers must satisfy both this and isValidAuPhone. */
+const CRM_PHONE_RE = /^[+]?[\d\s\-()]{8,20}$/;
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
@@ -52,13 +59,14 @@ export function validateEnquiry(data: EnquiryInput): EnquiryErrors {
   const errors: EnquiryErrors = {};
 
   if (!data.name) errors.name = "Please enter your name.";
+  else if (data.name.length < 2) errors.name = "Please enter your full name.";
   else if (data.name.length > LIMITS.name) errors.name = `Please keep your name under ${LIMITS.name} characters.`;
 
   if (!data.email) errors.email = "Please enter your email address.";
   else if (data.email.length > LIMITS.email || !EMAIL_RE.test(data.email))
     errors.email = "Please enter a valid email address, e.g. name@example.com.";
 
-  if (data.phone && (data.phone.length > LIMITS.phone || !isValidAuPhone(data.phone)))
+  if (data.phone && (data.phone.length > LIMITS.phone || !isValidAuPhone(data.phone) || !CRM_PHONE_RE.test(data.phone)))
     errors.phone = "Please enter a valid Australian phone number, e.g. 0412 345 678.";
 
   if (!(ENQUIRY_TOPICS as readonly string[]).includes(data.topic)) errors.topic = "Please choose what you need help with.";
