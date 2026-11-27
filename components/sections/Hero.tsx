@@ -9,24 +9,38 @@ const tickets = [
   { icon: "product-word", tile: "bg-brand-soft", title: "Word keeps crashing", meta: "Office · Tech connected", done: false },
 ];
 
+/**
+ * Example support-desk composition. From sm up the two floating elements overlap the main card only where it has
+ * empty padding: the hours badge sits half over the card's top edge (the card's 48px top padding keeps 24px clear
+ * below it), and the scan card overlaps 32px into the card's 48px bottom padding (16px clear of the last ticket).
+ * Below sm everything stacks in normal flow, so nothing can collide or overflow.
+ */
 function SupportDeskVisual() {
   return (
-    <div className="relative mx-auto w-full max-w-[520px] pt-10 pb-[98px]" aria-hidden="true">
+    <div className="relative mx-auto flex w-full max-w-[520px] flex-col sm:block sm:pt-6 sm:pb-[68px]" aria-hidden="true">
+      {/* Hours badge: in flow on phones, half over the card's top edge from sm up. */}
+      <div className="float-slow mb-3 flex items-center gap-2 self-end rounded-full border border-white/70 bg-white/[0.97] py-2.5 pr-4 pl-3 shadow-[0_24px_48px_-20px_rgb(3_8_26/0.5)] sm:absolute sm:top-0 sm:right-6 sm:z-10 sm:mb-0">
+        <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-brand">
+          <Icon name="pill-clock" size={16} />
+        </span>
+        <span className="text-sm leading-5 font-semibold whitespace-nowrap text-heading">{site.hours}</span>
+      </div>
+
       {/* Support desk card */}
-      <div className="glass-blur rounded-[20px] border border-white/70 bg-white/[0.92] p-4 shadow-[0_24px_48px_-20px_rgb(3_8_26/0.5)] ring-1 ring-brand/10 sm:ml-14 sm:p-6 lg:ml-0 lg:p-5 xl:ml-14 xl:p-6">
-        <div className="flex items-center justify-between gap-3 pb-1">
-          <div>
+      <div className="glass-blur rounded-[20px] border border-white/70 bg-white/[0.92] p-4 shadow-[0_24px_48px_-20px_rgb(3_8_26/0.5)] ring-1 ring-brand/10 sm:ml-12 sm:px-6 sm:pt-12 sm:pb-12 lg:ml-10 lg:px-5 xl:ml-12 xl:px-6">
+        <div className="flex items-center justify-between gap-3">
+          <div className="min-w-0">
             <p className="text-h5 text-heading">Today’s fixes</p>
             <p className="text-sm leading-[22px] text-muted">ITGeek remote support desk</p>
           </div>
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-green-soft py-1 pr-3 pl-2.5 text-sm leading-5 font-semibold text-green-ink">
+          <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-green-soft py-1 pr-3 pl-2.5 text-sm leading-5 font-semibold text-green-ink">
             <Icon name="live-dot" size={8} />
             Example
           </span>
         </div>
-        <ul className="mt-3 flex flex-col gap-3">
+        <ul className="mt-4 flex flex-col gap-3">
           {tickets.map((t) => (
-            <li key={t.title} className="flex items-center gap-3.5 rounded-[14px] border border-line/70 bg-subtle/80 py-3 pr-3.5 pl-3">
+            <li key={t.title} className="flex items-center gap-3.5 rounded-[14px] border border-line/70 bg-subtle/80 py-3 pr-3 pl-3">
               <span className={`hidden size-10 shrink-0 items-center justify-center rounded-[10px] xs:flex ${t.tile}`}>
                 <Icon name={t.icon} size={20} />
               </span>
@@ -40,7 +54,7 @@ function SupportDeskVisual() {
                   Fixed
                 </span>
               ) : (
-                <span className="shrink-0 rounded-full bg-amber/18 py-1 pr-2.5 pl-2 text-sm leading-5 font-semibold whitespace-nowrap text-heading">
+                <span className="shrink-0 rounded-full bg-amber/18 px-2.5 py-1 text-sm leading-5 font-semibold whitespace-nowrap text-heading">
                   In progress
                 </span>
               )}
@@ -49,16 +63,8 @@ function SupportDeskVisual() {
         </ul>
       </div>
 
-      {/* Response pill */}
-      <div className="float-slow absolute top-0 right-0 flex items-center gap-2 rounded-full border border-white/70 bg-white/[0.97] py-2.5 pr-4 pl-3 shadow-[0_24px_48px_-20px_rgb(3_8_26/0.5)]">
-        <span className="flex size-7 items-center justify-center rounded-full bg-brand">
-          <Icon name="pill-clock" size={16} />
-        </span>
-        <span className="text-sm leading-5 font-semibold whitespace-nowrap text-heading">{site.hours}</span>
-      </div>
-
-      {/* Threat scan card */}
-      <div className="float-slow-delayed absolute bottom-2.5 left-0 flex w-[300px] max-w-[calc(100%-1.5rem)] flex-col gap-3.5 rounded-2xl border border-white/70 bg-white/[0.97] p-[18px] shadow-[0_24px_48px_-20px_rgb(3_8_26/0.5)]">
+      {/* Threat scan card: in flow on phones; from sm up it overlaps only the card's empty bottom padding. */}
+      <div className="float-slow-delayed mt-3 flex w-full flex-col gap-3.5 rounded-2xl border border-white/70 bg-white/[0.97] p-[18px] shadow-[0_24px_48px_-20px_rgb(3_8_26/0.5)] sm:absolute sm:bottom-0 sm:left-0 sm:z-10 sm:mt-0 sm:w-[300px]">
         <div className="flex items-center gap-3">
           <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-green-soft">
             <Icon name="scan-shield" size={24} />

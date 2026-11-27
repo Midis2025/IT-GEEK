@@ -101,18 +101,11 @@
     @apply py-16 md:py-20 lg:py-24 xl:py-28;
   }
 
-  /* Eyebrow label: small caps with a short accent rule — replaces the repeated pill badges. */
+  /* Eyebrow label: small caps, optionally preceded by the section index. */
   .eyebrow {
     display: inline-flex;
     align-items: center;
     gap: 0.75rem;
-  }
-  .eyebrow::before {
-    content: "";
-    width: 1.5rem;
-    height: 2px;
-    border-radius: 2px;
-    background: currentColor;
   }
 
   /* Section index ("01") set in a monospaced face for a quiet technical detail. */
@@ -215,11 +208,14 @@
   }
 
   /* Gentle floating motion for the hero notification cards. */
-  .float-slow {
-    animation: float-y 5s ease-in-out infinite;
-  }
-  .float-slow-delayed {
-    animation: float-y 5.5s ease-in-out 1.2s infinite;
+  /* Only where the hero cards are layered (sm and up); on phones they sit stacked and still. */
+  @media (min-width: 40rem) {
+    .float-slow {
+      animation: float-y 5s ease-in-out infinite;
+    }
+    .float-slow-delayed {
+      animation: float-y 5.5s ease-in-out 1.2s infinite;
+    }
   }
 
   /* Display/H1 · Plus Jakarta Sans ExtraBold, 36 → 56px, -2.5% */
